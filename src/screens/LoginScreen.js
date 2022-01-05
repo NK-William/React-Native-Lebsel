@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Pressable,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Text } from "react-native-elements";
 
@@ -19,9 +13,20 @@ const LoginScreen = () => {
         </Text>
         <Text style={styles.text}>Please sign in to continue</Text>
         <Text style={styles.emailText}>EMAIL</Text>
-        <TextInput style={styles.textInput} textAlign={"center"} />
+        <TextInput
+          style={styles.textInput}
+          textAlign={"center"}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
         <Text style={styles.passwordText}>PASSWORD</Text>
-        <TextInput style={styles.textInput} textAlign={"center"} />
+        <TextInput
+          style={styles.textInput}
+          textAlign={"center"}
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+        />
         <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>
         </TouchableOpacity>
