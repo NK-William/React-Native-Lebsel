@@ -1,33 +1,43 @@
 import React from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Text } from "react-native-elements";
 
 const LoginScreen = () => {
   return (
-    <SafeAreaView
-      style={styles.safeAreaContainer}
-      forceInset={{ top: "always" }}
-    >
-      <View style={styles.container}>
-        <View style={styles.top_space}></View>
-        <View style={styles.sub_container}>
-          <Text style={styles.headerText} h1>
-            Login
-          </Text>
-          <Text style={styles.text}>Please sign in to continue</Text>
-          <Text style={styles.emailText}>EMAIL</Text>
-          <TextInput style={styles.textInput} textAlign={"center"} />
-          <Text style={styles.passwordText}>PASSWORD</Text>
-          <TextInput style={styles.textInput} textAlign={"center"} />
-          <Button
-            style={styles.submitButton}
-            title="LOGIN"
-            onPress={() => {}}
-          />
+    <View style={styles.container}>
+      <View style={styles.top_space}></View>
+      <View style={styles.sub_container}>
+        <Text style={styles.headerText} h1>
+          Login
+        </Text>
+        <Text style={styles.text}>Please sign in to continue</Text>
+        <Text style={styles.emailText}>EMAIL</Text>
+        <TextInput style={styles.textInput} textAlign={"center"} />
+        <Text style={styles.passwordText}>PASSWORD</Text>
+        <TextInput style={styles.textInput} textAlign={"center"} />
+        <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
+          <Text style={styles.SubmitButtonText}>SUBMIT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
+          <Text style={styles.linkText}>Forgot password?</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottom_container}>
+        <View style={styles.signUpLinkContainer}>
+          <Text style={styles.text}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.linkText}>Sign up</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -35,7 +45,13 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   headerText: { color: "white" },
-  text: { color: "#615E67", marginTop: 8, fontSize: 15 },
+  text: { color: "#615E67", marginTop: 16, fontSize: 15 },
+  linkText: {
+    color: "#0DF6E3",
+    marginTop: 16,
+    fontSize: 15,
+    alignSelf: "center",
+  },
   emailText: {
     marginTop: 50,
     marginLeft: 8,
@@ -60,10 +76,18 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     backgroundColor: "#0DF6E3",
-    // height: 60,
-    // width: 200,
-    // marginTop: 50,
-    // borderRadius: 50,
+    height: 60,
+    width: 200,
+    marginTop: 50,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  SubmitButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#201C31",
   },
   safeAreaContainer: { flex: 1 },
   container: {
@@ -75,6 +99,15 @@ const styles = StyleSheet.create({
     flex: 0.1,
   },
   sub_container: {
-    flex: 0.9,
+    flex: 0.8,
+    justifyContent: "center",
+  },
+  bottom_container: {
+    flex: 0.1,
+  },
+  signUpLinkContainer: {
+    marginTop: 16,
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
