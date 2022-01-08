@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Text } from "react-native-elements";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -50,7 +50,7 @@ const RegisterScreen = () => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry
         />
         <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>
@@ -58,7 +58,11 @@ const RegisterScreen = () => {
         <View style={styles.bottom_container}>
           <View style={styles.signUpLinkContainer}>
             <Text style={styles.text}>Already have an account? </Text>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.pop();
+              }}
+            >
               <Text style={styles.linkText}>Sign in</Text>
             </TouchableOpacity>
           </View>
@@ -76,7 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     paddingRight: 12,
-    paddingTop: 64,
     backgroundColor: "#201C31",
   },
   scrollView: {

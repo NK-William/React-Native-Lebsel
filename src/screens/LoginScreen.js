@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Text } from "react-native-elements";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.top_space}></View>
@@ -27,17 +27,30 @@ const LoginScreen = () => {
           autoCorrect={false}
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => {
+            console.log("login pressed");
+          }}
+        >
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("reset password pressed");
+          }}
+        >
           <Text style={styles.linkText}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.bottom_container}>
         <View style={styles.signUpLinkContainer}>
           <Text style={styles.text}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          >
             <Text style={styles.linkText}>Sign up</Text>
           </TouchableOpacity>
         </View>
