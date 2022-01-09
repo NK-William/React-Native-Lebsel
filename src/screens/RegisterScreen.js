@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -7,8 +7,30 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Text } from "react-native-elements";
+import { auth } from "../firebase-config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    try {
+      console.log(email + " and " + password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    } catch (error) {
+      alert(error.message);
+    }
+
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((userCredentials) => {
+    //     const user = userCredentials.user;
+    //     console.log("Registered with:", user.email);
+    //   })
+    //   .catch((error) => alert(error.message));
+  };
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -36,6 +58,8 @@ const RegisterScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
         <Text style={styles.hintText}>PASSWORD</Text>
         <TextInput
@@ -43,6 +67,9 @@ const RegisterScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
+          secureTextEntry
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         />
         <Text style={styles.hintText}>RE-ENTER PASSWORD</Text>
         <TextInput
@@ -52,7 +79,7 @@ const RegisterScreen = ({ navigation }) => {
           autoCorrect={false}
           secureTextEntry
         />
-        <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.submitButton} onPress={handleSignUp}>
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>
         </TouchableOpacity>
         <View style={styles.bottom_container}>

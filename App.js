@@ -27,6 +27,7 @@ export default function App() {
             headerTintColor: "#615E67",
           }}
         />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -25,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={true}
+          secureTextEntry
         />
         <TouchableOpacity
           style={styles.submitButton}
