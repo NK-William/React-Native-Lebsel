@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Text } from "react-native-elements";
+import { auth } from "../firebase-config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      if (user) {
+        navigation.replace("Home");
+      } else {
+        alert("Something went wrong. Please try again");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.top_space}></View>
@@ -18,6 +35,8 @@ const LoginScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
         <Text style={styles.passwordText}>PASSWORD</Text>
         <TextInput
@@ -26,11 +45,13 @@ const LoginScreen = ({ navigation }) => {
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         />
         <TouchableOpacity
           style={styles.submitButton}
           onPress={() => {
-            console.log("login pressed");
+            handleLogin();
           }}
         >
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>

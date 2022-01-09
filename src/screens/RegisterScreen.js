@@ -16,9 +16,12 @@ const RegisterScreen = ({ navigation }) => {
 
   const handleSignUp = async () => {
     try {
-      console.log(email + " and " + password);
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      if (user) {
+        navigation.replace("Home");
+      } else {
+        alert("Something went wrong. Please try again");
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -79,7 +82,12 @@ const RegisterScreen = ({ navigation }) => {
           autoCorrect={false}
           secureTextEntry
         />
-        <TouchableOpacity style={styles.submitButton} onPress={handleSignUp}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => {
+            handleSignUp();
+          }}
+        >
           <Text style={styles.SubmitButtonText}>SUBMIT</Text>
         </TouchableOpacity>
         <View style={styles.bottom_container}>
