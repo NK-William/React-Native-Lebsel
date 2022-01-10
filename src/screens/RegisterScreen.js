@@ -11,7 +11,6 @@ import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
-  console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
