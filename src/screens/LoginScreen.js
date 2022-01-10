@@ -13,7 +13,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
-        navigation.replace("Home");
+        //navigation.replace("Home");
       } else {
         alert("Something went wrong. Please try again");
       }
@@ -28,6 +28,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.headerText} h1>
           Login
         </Text>
+
         <Text style={styles.text}>Please sign in to continue</Text>
         <Text style={styles.emailText}>EMAIL</Text>
         <TextInput

@@ -11,6 +11,7 @@ import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
+  console.log(navigation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +19,7 @@ const RegisterScreen = ({ navigation }) => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       if (user) {
-        navigation.replace("Home");
+        //navigation.replace("Home");
       } else {
         alert("Something went wrong. Please try again");
       }
