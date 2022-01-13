@@ -27,7 +27,12 @@ for (var i = 0; i < NumItems; i++) {
 const HomeScreen = ({ navigation }) => {
   const renderItem = ({ item }) => {
     return (
-      <Pressable onPress={() => console.log(item)}>
+      <Pressable
+        onPress={() => {
+          console.log(item);
+          navigation.navigate("Availability");
+        }}
+      >
         <View style={styles.carouselItemView}>
           <Text style={{ color: "white", fontSize: 40 }}>{item}</Text>
         </View>

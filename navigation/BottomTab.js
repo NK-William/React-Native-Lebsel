@@ -14,9 +14,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function MainHome() {
+function BottomTabNav() {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -25,26 +26,26 @@ function MainHome() {
           headerTitleStyle: { color: "white" },
         }}
       />
-      <Tab.Screen name="CheckInAndOuts" component={CheckInAndOutsScreen} />
-      <Tab.Screen name="Availability" component={AvailabilityScreen} />
-      <Tab.Screen name="TimeSheets" component={TimeSheetsScreen} />
-      <Tab.Screen name="UniformRecords" component={UniformRecordsScreen} />
-      <Tab.Screen name="Promoters" component={PromotersScreen} />
-    </Stack.Navigator>
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 }
 
 const BottomTab = () => {
   return (
-    <Tab.Navigator initialRouteName="MainHome">
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen
-        name="MainHome"
-        component={MainHome}
+    <Stack.Navigator initialRouteName="BottomTab">
+      <Stack.Screen
+        name="BottomTabNav"
+        component={BottomTabNav}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
+
+      <Stack.Screen name="CheckInAndOuts" component={CheckInAndOutsScreen} />
+      <Stack.Screen name="Availability" component={AvailabilityScreen} />
+      <Stack.Screen name="TimeSheets" component={TimeSheetsScreen} />
+      <Stack.Screen name="UniformRecords" component={UniformRecordsScreen} />
+      <Stack.Screen name="Promoters" component={PromotersScreen} />
+    </Stack.Navigator>
   );
 };
 
