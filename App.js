@@ -9,6 +9,7 @@ import RegisterScreen from "./src/screens/RegisterScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./src/firebase-config";
+import BottomTab from "./navigation/BottomTab";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,16 +22,7 @@ export default function App() {
   return (
     <NavigationContainer>
       {user ? (
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              headerStyle: { backgroundColor: "#201C31" },
-              headerTitleStyle: { color: "white" },
-            }}
-          />
-        </Stack.Navigator>
+        <BottomTab />
       ) : (
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
