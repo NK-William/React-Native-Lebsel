@@ -22,7 +22,14 @@ export default function App() {
     <NavigationContainer>
       {user ? (
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              headerStyle: { backgroundColor: "#201C31" },
+              headerTitleStyle: { color: "white" },
+            }}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator initialRouteName="Login">
@@ -36,7 +43,7 @@ export default function App() {
             component={RegisterScreen}
             options={{
               title: "",
-              headerStyle: { backgroundColor: "#201C31", elevation: 1 },
+              headerStyle: { backgroundColor: "#201C31" },
               headerTintColor: "#615E67",
             }}
           />

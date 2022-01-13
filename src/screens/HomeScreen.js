@@ -15,8 +15,8 @@ let FirstItem = 3;
 // FirstItem = 20;  // <----- UNCOMMENT THIS
 
 const SliderWidth = Dimensions.get("screen").width;
-const ItemWidth = 250.0;
-const ItemHeight = 400.0;
+const ItemWidth = 200.0;
+const ItemHeight = 300.0;
 
 const NumItems = 5;
 const Items = [];
@@ -28,15 +28,7 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = ({ item }) => {
     return (
       <Pressable onPress={() => console.log(item)}>
-        <View
-          style={{
-            width: ItemWidth,
-            height: ItemHeight,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "blue",
-          }}
-        >
+        <View style={styles.carouselItemView}>
           <Text style={{ color: "white", fontSize: 40 }}>{item}</Text>
         </View>
       </Pressable>
@@ -53,16 +45,23 @@ const HomeScreen = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <Button onPress={handleLogoutTest} title="logout test" />
-      <Carousel
-        layout={"stack"}
-        data={Items}
-        firstItem={FirstItem}
-        itemWidth={ItemWidth}
-        sliderWidth={SliderWidth}
-        activeSlideAlignment="center"
-        renderItem={renderItem}
-      />
+      <View style={styles.subTopContainer}>
+        <Text style={styles.welcomeText}>Welcome</Text>
+        <Text style={styles.nameText}>Nkuna</Text>
+        <Text style={styles.nameText}>William</Text>
+        {/* <Button onPress={handleLogoutTest} title="logout test" /> */}
+      </View>
+      <View style={styles.subBottomContainer}>
+        <Carousel
+          layout={"default"}
+          data={Items}
+          firstItem={FirstItem}
+          itemWidth={ItemWidth}
+          sliderWidth={SliderWidth}
+          activeSlideAlignment="center"
+          renderItem={renderItem}
+        />
+      </View>
     </View>
   );
 };
@@ -72,7 +71,35 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#201C31",
+  },
+  subTopContainer: {
+    flex: 0.3,
+    backgroundColor: "#201C31",
     justifyContent: "center",
     alignItems: "center",
+  },
+  welcomeText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  nameText: { color: "white", fontSize: 16 },
+  subBottomContainer: {
+    flex: 0.7,
+    paddingTop: 30,
+    paddingBottom: 8,
+    backgroundColor: "white",
+    borderTopLeftRadius: 26,
+    borderTopRightRadius: 26,
+  },
+  carouselItemView: {
+    width: ItemWidth,
+    height: ItemHeight,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "blue",
+    borderRadius: 10,
   },
 });
