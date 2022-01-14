@@ -20,7 +20,7 @@ const ItemHeight = 300.0;
 
 const NumItems = 5;
 const Items = [];
-for (var i = 0; i < NumItems; i++) {
+for (var i = 1; i <= NumItems; i++) {
   Items.push(i);
 }
 
