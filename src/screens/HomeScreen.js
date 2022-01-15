@@ -34,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
         }}
       >
         <View style={styles.carouselItemView}>
-          <Text style={{ color: "white", fontSize: 40 }}>{item}</Text>
+          <Text style={{ color: "#0DF6E3", fontSize: 40 }}>{item}</Text>
         </View>
       </Pressable>
     );
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   welcomeText: {
-    color: "white",
+    color: "#0DF6E3",
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 8,
@@ -104,7 +104,9 @@ const styles = StyleSheet.create({
     height: ItemHeight,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "blue",
+    backgroundColor: "white",
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#0DF6E3",
   },
 });
