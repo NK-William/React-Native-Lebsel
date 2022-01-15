@@ -11,6 +11,7 @@ import {
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import Carousel from "react-native-snap-carousel";
+import CarouselCard from "../components/CarouselCard";
 
 let FirstItem = 3;
 // FirstItem = 20;  // <----- UNCOMMENT THIS
@@ -27,28 +28,64 @@ for (var i = 1; i <= NumItems; i++) {
 
 const HomeScreen = ({ navigation }) => {
   const renderItem = ({ item }) => {
-    return (
-      <Pressable
-        onPress={() => {
-          console.log(item);
-          navigation.navigate("Availability");
-        }}
-      >
-        <View style={styles.carouselItemView}>
-          <Image
-            source={require("../../assets/availability.jpg")}
-            style={{
-              flex: 1,
-              width: "100%",
-              height: "100%",
-              borderTopLeftRadius: 10,
-              borderTopRightRadius: 10,
+    switch (item) {
+      case 1:
+        return (
+          <CarouselCard
+            item={item}
+            onPress={() => {
+              item = { item };
+              console.log(item);
+              navigation.navigate("Availability");
             }}
+            CarouselViewItemText="Availability"
           />
-          <Text style={{ color: "#0DF6E3", fontSize: 40 }}>{item}</Text>
-        </View>
-      </Pressable>
-    );
+        );
+      case 2:
+        return (
+          <CarouselCard
+            item={item}
+            onPress={() => {
+              console.log(item);
+              navigation.navigate("Promoters");
+            }}
+            CarouselViewItemText="Promoters"
+          />
+        );
+      case 3:
+        return (
+          <CarouselCard
+            item={item}
+            onPress={() => {
+              console.log(item);
+              navigation.navigate("CheckInAndOuts");
+            }}
+            CarouselViewItemText="Check Ins"
+          />
+        );
+      case 4:
+        return (
+          <CarouselCard
+            item={item}
+            onPress={() => {
+              console.log(item);
+              navigation.navigate("TimeSheets");
+            }}
+            CarouselViewItemText="TimeSheets"
+          />
+        );
+      case 5:
+        return (
+          <CarouselCard
+            item={item}
+            onPress={() => {
+              console.log(item);
+              navigation.navigate("UniformRecords");
+            }}
+            CarouselViewItemText="Uniform Records"
+          />
+        );
+    }
   };
 
   const handleLogoutTest = async () => {
@@ -109,15 +146,5 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: 26,
     borderTopRightRadius: 26,
-  },
-  carouselItemView: {
-    width: ItemWidth,
-    height: ItemHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#0DF6E3",
   },
 });
