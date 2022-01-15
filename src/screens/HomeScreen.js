@@ -32,13 +32,11 @@ const HomeScreen = ({ navigation }) => {
       case 1:
         return (
           <CarouselCard
-            item={item}
             onPress={() => {
-              item = { item };
               console.log(item);
               navigation.navigate("Availability");
             }}
-            CarouselViewItemText="Availability"
+            carouselViewItemText="Availability"
           />
         );
       case 2:
@@ -49,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
               console.log(item);
               navigation.navigate("Promoters");
             }}
-            CarouselViewItemText="Promoters"
+            carouselViewItemText="Promoters"
           />
         );
       case 3:
@@ -60,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
               console.log(item);
               navigation.navigate("CheckInAndOuts");
             }}
-            CarouselViewItemText="Check Ins"
+            carouselViewItemText="Check Ins"
           />
         );
       case 4:
@@ -71,7 +69,7 @@ const HomeScreen = ({ navigation }) => {
               console.log(item);
               navigation.navigate("TimeSheets");
             }}
-            CarouselViewItemText="TimeSheets"
+            carouselViewItemText="TimeSheets"
           />
         );
       case 5:
@@ -82,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
               console.log(item);
               navigation.navigate("UniformRecords");
             }}
-            CarouselViewItemText="Uniform Records"
+            carouselViewItemText="Uniform Records"
           />
         );
     }
