@@ -6,6 +6,7 @@ import {
   Button,
   Dimensions,
   Pressable,
+  Image,
 } from "react-native";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
@@ -34,6 +35,16 @@ const HomeScreen = ({ navigation }) => {
         }}
       >
         <View style={styles.carouselItemView}>
+          <Image
+            source={require("../../assets/availability.jpg")}
+            style={{
+              flex: 1,
+              width: "100%",
+              height: "100%",
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+            }}
+          />
           <Text style={{ color: "#0DF6E3", fontSize: 40 }}>{item}</Text>
         </View>
       </Pressable>
