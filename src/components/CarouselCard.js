@@ -5,6 +5,7 @@ const ItemWidth = 200.0;
 const ItemHeight = 300.0;
 
 const CarouselCard = ({ onPress, item, carouselViewItemText }) => {
+  console.log(item);
   return (
     <Pressable onPress={onPress}>
       <>
@@ -14,12 +15,12 @@ const CarouselCard = ({ onPress, item, carouselViewItemText }) => {
               item === 1
                 ? require("../../assets/availability.jpg")
                 : item === 2
-                ? require("../../assets/availability.jpg")
+                ? require("../../assets/promoters.jpg")
                 : item === 3
-                ? require("../../assets/availability.jpg")
+                ? require("../../assets/checkins.jpg")
                 : item === 4
-                ? require("../../assets/availability.jpg")
-                : require("../../assets/availability.jpg")
+                ? require("../../assets/timesheets.jpg")
+                : require("../../assets/uniform.jpg")
             }
             style={{
               flex: 1,

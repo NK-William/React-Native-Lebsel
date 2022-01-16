@@ -32,6 +32,7 @@ const HomeScreen = ({ navigation }) => {
       case 1:
         return (
           <CarouselCard
+            item={item}
             onPress={() => {
               console.log(item);
               navigation.navigate("Availability");
