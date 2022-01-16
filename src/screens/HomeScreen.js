@@ -1,20 +1,11 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Dimensions,
-  Pressable,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import Carousel from "react-native-snap-carousel";
 import CarouselCard from "../components/CarouselCard";
 
 let FirstItem = 3;
-// FirstItem = 20;  // <----- UNCOMMENT THIS
 
 const SliderWidth = Dimensions.get("screen").width;
 const ItemWidth = 200.0;
