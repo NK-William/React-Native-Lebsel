@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import SafeAreaView from "react-native-safe-area-view";
 import { Text } from "react-native-elements";
 import { auth } from "../firebase-config";
@@ -8,10 +14,17 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  console.log("main method2");
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
+      console.log("started with loading");
       const user = await signInWithEmailAndPassword(auth, email, password);
+      setLoading(false);
+      console.log("loading stopped");
       if (user) {
         //navigation.replace("Home");
       } else {
@@ -19,11 +32,15 @@ const LoginScreen = ({ navigation }) => {
       }
     } catch (error) {
       alert(error.message);
+      setLoading(false);
+      console.log("loading stopped");
     }
   };
   return (
     <View style={styles.container}>
-      <View style={styles.top_space}></View>
+      <View style={styles.top_space}>
+        <ActivityIndicator size="large" color="#0DF6E3" animating={loading} />
+      </View>
       <View style={styles.sub_container}>
         <Text style={styles.headerText} h1>
           Login

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import Carousel from "react-native-snap-carousel";
@@ -92,7 +92,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.welcomeText}>Welcome</Text>
         <Text style={styles.nameText}>Nkuna</Text>
         <Text style={styles.nameText}>William</Text>
-        {/* <Button onPress={handleLogoutTest} title="logout test" /> */}
+        <Button onPress={handleLogoutTest} title="logout test" />
       </View>
       <View style={styles.subBottomContainer}>
         <Carousel
