@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Switch,
 } from "react-native";
 import { Text } from "react-native-elements";
 import { auth } from "../firebase-config";
@@ -14,8 +15,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   useEffect(async () => {
     if (loading) {
       try {
@@ -68,6 +71,46 @@ const RegisterScreen = ({ navigation }) => {
           autoCapitalize="none"
           autoCorrect={false}
         />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ flex: 1, color: "white", marginLeft: 12 }}>
+            Are you an admin?
+          </Text>
+          <Text style={{ color: "#0DF6E3", marginLeft: 12 }}>
+            {isEnabled ? "Yes" : "No"}
+          </Text>
+          <Switch
+            trackColor={{ false: "#767577", true: "#0DF6E3" }}
+            thumbColor={isEnabled ? "white" : "white"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
+        {isEnabled ? (
+          <Text style={{ color: "#0DF6E3", marginHorizontal: 8 }}>
+            A code will be generated when you register, provide the code to your
+            employees when they register to the system, you can re-view the code
+            from the settings.
+          </Text>
+        ) : (
+          <>
+            <Text style={styles.hintText}>CODE PROVIDED BY ADMIN</Text>
+            <TextInput
+              style={styles.textInput}
+              textAlign={"center"}
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={code}
+              onChangeText={(text) => setCode(text)}
+            />
+          </>
+        )}
+
         <Text style={styles.hintText}>EMAIL</Text>
         <TextInput
           style={styles.textInput}

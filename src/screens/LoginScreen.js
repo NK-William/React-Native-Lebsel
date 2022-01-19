@@ -22,9 +22,7 @@ const LoginScreen = ({ navigation }) => {
       try {
         const user = await signInWithEmailAndPassword(auth, email, password);
         setLoading(false);
-        if (user) {
-          //navigation.replace("Home");
-        } else {
+        if (!user) {
           alert("Something went wrong. Please try again");
         }
       } catch (error) {
