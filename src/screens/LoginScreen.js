@@ -18,14 +18,10 @@ const LoginScreen = ({ navigation }) => {
   // result
 
   useEffect(async () => {
-    console.log("in useEffect");
     if (loading) {
       try {
-        console.log("started with loading");
         const user = await signInWithEmailAndPassword(auth, email, password);
-        console.log("Passed");
         setLoading(false);
-        console.log("loading stopped");
         if (user) {
           //navigation.replace("Home");
         } else {
@@ -33,15 +29,10 @@ const LoginScreen = ({ navigation }) => {
         }
       } catch (error) {
         alert(error.message);
-        console.log("Failed");
         setLoading(false);
-        console.log("loading stopped2");
       }
     }
-    console.log(loading);
   }, [loading]);
-
-  console.log("main method3*************");
 
   const handleLogin = () => {
     // perform some input validation before showing a loader
@@ -49,15 +40,14 @@ const LoginScreen = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.top_space}>
-        <ActivityIndicator size="large" color="#0DF6E3" animating={loading} />
-      </View>
+      <View style={styles.top_space}></View>
       <View style={styles.sub_container}>
         <Text style={styles.headerText} h1>
           Login
         </Text>
 
         <Text style={styles.text}>Please sign in to continue</Text>
+
         <Text style={styles.emailText}>EMAIL</Text>
         <TextInput
           style={styles.textInput}
@@ -77,14 +67,24 @@ const LoginScreen = ({ navigation }) => {
           value={password}
           onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() => {
-            handleLogin();
-          }}
-        >
-          <Text style={styles.SubmitButtonText}>SUBMIT</Text>
-        </TouchableOpacity>
+
+        {loading ? (
+          <ActivityIndicator
+            style={{ alignSelf: "center", marginTop: 25 }}
+            size="large"
+            color="#0DF6E3"
+            animating={true}
+          />
+        ) : (
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => {
+              handleLogin();
+            }}
+          >
+            <Text style={styles.SubmitButtonText}>SUBMIT</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           onPress={() => {
             console.log("reset password pressed");
