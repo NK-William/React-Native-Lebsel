@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -17,25 +17,35 @@ const LoginScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   // result
 
-  console.log("main method2");
-
-  const handleLogin = async () => {
-    try {
-      setLoading(true);
-      console.log("started with loading");
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      setLoading(false);
-      console.log("loading stopped");
-      if (user) {
-        //navigation.replace("Home");
-      } else {
-        alert("Something went wrong. Please try again");
+  useEffect(async () => {
+    console.log("in useEffect");
+    if (loading) {
+      try {
+        console.log("started with loading");
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        console.log("Passed");
+        setLoading(false);
+        console.log("loading stopped");
+        if (user) {
+          //navigation.replace("Home");
+        } else {
+          alert("Something went wrong. Please try again");
+        }
+      } catch (error) {
+        alert(error.message);
+        console.log("Failed");
+        setLoading(false);
+        console.log("loading stopped2");
       }
-    } catch (error) {
-      alert(error.message);
-      setLoading(false);
-      console.log("loading stopped");
     }
+    console.log(loading);
+  }, [loading]);
+
+  console.log("main method3*************");
+
+  const handleLogin = () => {
+    // perform some input validation before showing a loader
+    setLoading(true); // only reach to this setter hook method only if all the input fields are valid
   };
   return (
     <View style={styles.container}>
