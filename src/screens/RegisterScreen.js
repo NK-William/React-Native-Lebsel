@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
   ScrollView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { Text } from "react-native-elements";
 import { auth } from "../firebase-config";
@@ -13,18 +14,30 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(async () => {
+    if (loading) {
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setLoading(false);
+        if (!user) {
+          alert("Something went wrong. Please try again");
+        }
+      } catch (error) {
+        alert(error.message);
+        setLoading(false);
+      }
+    }
+  }, [loading]);
 
   const handleSignUp = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      if (user) {
-        //navigation.replace("Home");
-      } else {
-        alert("Something went wrong. Please try again");
-      }
-    } catch (error) {
-      alert(error.message);
-    }
+    // perform some input validation before showing a loader
+    setLoading(true); // only reach to this setter hook method only if all the input fields are valid
 
     // auth
     //   .createUserWithEmailAndPassword(email, password)
@@ -82,14 +95,23 @@ const RegisterScreen = ({ navigation }) => {
           autoCorrect={false}
           secureTextEntry
         />
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() => {
-            handleSignUp();
-          }}
-        >
-          <Text style={styles.SubmitButtonText}>SUBMIT</Text>
-        </TouchableOpacity>
+        {loading ? (
+          <ActivityIndicator
+            style={{ alignSelf: "center", marginTop: 25 }}
+            size="large"
+            color="#0DF6E3"
+            animating={true}
+          />
+        ) : (
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={() => {
+              handleSignUp();
+            }}
+          >
+            <Text style={styles.SubmitButtonText}>SUBMIT</Text>
+          </TouchableOpacity>
+        )}
         <View style={styles.bottom_container}>
           <View style={styles.signUpLinkContainer}>
             <Text style={styles.text}>Already have an account? </Text>
