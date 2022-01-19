@@ -13,11 +13,17 @@ import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterScreen = ({ navigation }) => {
+  // for inputs
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [code, setCode] = useState("");
+  const [passwordVerification, setPasswordVerification] = useState("");
+  // for controls
   const [loading, setLoading] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
+
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   useEffect(async () => {
     if (loading) {
@@ -39,8 +45,18 @@ const RegisterScreen = ({ navigation }) => {
   }, [loading]);
 
   const handleSignUp = async () => {
-    // perform some input validation before showing a loader
-    setLoading(true); // only reach to this setter hook method only if all the input fields are valid
+    // input verification
+    if (!name || !surname || !email || !password) {
+      alert("Please fill all the fields");
+    } else if (!isEnabled && !code) {
+      alert("Please enter the code");
+    } else if (!passwordVerification) {
+      alert("Please re-enter the password");
+    } else if (password != passwordVerification) {
+      alert("Your entered passwords don't match");
+    } else {
+      setLoading(true); // only reach to this setter hook method only if all the input fields are valid
+    }
 
     // auth
     //   .createUserWithEmailAndPassword(email, password)
@@ -63,6 +79,8 @@ const RegisterScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
+          value={name}
+          onChangeText={(text) => setName(text)}
         />
         <Text style={styles.hintText}>SURNAME</Text>
         <TextInput
@@ -70,6 +88,8 @@ const RegisterScreen = ({ navigation }) => {
           textAlign={"center"}
           autoCapitalize="none"
           autoCorrect={false}
+          value={surname}
+          onChangeText={(text) => setSurname(text)}
         />
         <View
           style={{
@@ -137,6 +157,8 @@ const RegisterScreen = ({ navigation }) => {
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry
+          value={passwordVerification}
+          onChangeText={(text) => setPasswordVerification(text)}
         />
         {loading ? (
           <ActivityIndicator
