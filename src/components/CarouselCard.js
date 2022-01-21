@@ -5,7 +5,6 @@ const ItemWidth = 200.0;
 const ItemHeight = 300.0;
 
 const CarouselCard = ({ onPress, item, carouselViewItemText }) => {
-  console.log(item);
   return (
     <Pressable onPress={() => onPress}>
       <>

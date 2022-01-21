@@ -11,6 +11,7 @@ import {
 import { Text } from "react-native-elements";
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 const RegisterScreen = ({ navigation }) => {
   // for inputs
@@ -28,15 +29,27 @@ const RegisterScreen = ({ navigation }) => {
   useEffect(async () => {
     if (loading) {
       try {
-        const user = await createUserWithEmailAndPassword(
+        const UserCredential = await createUserWithEmailAndPassword(
           auth,
           email,
           password
         );
-        setLoading(false);
-        if (!user) {
+        if (UserCredential) {
+          const isAdmin = isEnabled ? "admins" : "employees/" + code;
+          const db = getDatabase();
+          const reference = ref(
+            db,
+            `users/${isAdmin}/` + UserCredential.user.uid
+          );
+          await set(reference, {
+            name,
+            surname,
+            email,
+          });
+        } else {
           alert("Something went wrong. Please try again");
         }
+        setLoading(false);
       } catch (error) {
         alert(error.message);
         setLoading(false);
@@ -45,6 +58,7 @@ const RegisterScreen = ({ navigation }) => {
   }, [loading]);
 
   const handleSignUp = async () => {
+    setLoading(true);
     // input verification
     if (!name || !surname || !email || !password) {
       alert("Please fill all the fields");
@@ -57,7 +71,6 @@ const RegisterScreen = ({ navigation }) => {
     } else {
       setLoading(true); // only reach to this setter hook method only if all the input fields are valid
     }
-
     // auth
     //   .createUserWithEmailAndPassword(email, password)
     //   .then((userCredentials) => {
