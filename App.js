@@ -20,7 +20,11 @@ export default function App() {
   });
   return (
     <NavigationContainer>
-      {user ? <MainFlowNavigation /> : <AuthenticationFlowNavigation />}
+      {user ? (
+        <MainFlowNavigation user={user} />
+      ) : (
+        <AuthenticationFlowNavigation />
+      )}
     </NavigationContainer>
   );
 }

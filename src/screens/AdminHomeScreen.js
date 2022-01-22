@@ -81,7 +81,6 @@ const AdminHomeScreen = ({ navigation }) => {
   const handleLogoutTest = async () => {
     try {
       await signOut(auth);
-      navigation.replace("Login");
     } catch (error) {
       alert(error.message);
     }

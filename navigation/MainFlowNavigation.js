@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "../src/screens/SettingsScreen";
@@ -11,6 +11,9 @@ import UniformRecordsScreen from "../src/screens/UniformRecordsScreen";
 import PromotersScreen from "../src/screens/PromotersScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
+import EmployeeFlowNavigation from "./EmployeeFlowNavigation";
+import { getDatabase, ref, child, get } from "firebase/database";
+import SplashScreen from "../src/screens/SplashScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -99,22 +102,82 @@ function BottomTabNav() {
   );
 }
 
-const MainFlowNavigation = () => {
-  return (
-    <Stack.Navigator initialRouteName="BottomTabNav">
-      <Stack.Screen
-        name="BottomTabNav"
-        component={BottomTabNav}
-        options={{ headerShown: false }}
-      />
+const MainFlowNavigation = ({ user }) => {
+  const [determinePage, setDeterminePage] = useState({
+    isAdmin: false,
+    pageInitialized: false,
+  });
 
-      <Stack.Screen name="Check in and outs" component={CheckInAndOutsScreen} />
-      <Stack.Screen name="Availability" component={AvailabilityScreen} />
-      <Stack.Screen name="Timesheets" component={TimeSheetsScreen} />
-      <Stack.Screen name="Uniform records" component={UniformRecordsScreen} />
-      <Stack.Screen name="Promoters" component={PromotersScreen} />
-    </Stack.Navigator>
-  );
+  if (!determinePage.pageInitialized) {
+    console.log("Not initialized");
+    const dbRef = ref(getDatabase());
+    console.log(user.uid);
+    get(child(dbRef, `users/admins/${user.uid}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log("result is");
+          console.log(snapshot.val());
+          console.log("Ow true *********************");
+          setDeterminePage({
+            ...determinePage,
+            isAdmin: true,
+            pageInitialized: true,
+          });
+        } else {
+          console.log("Ow false *********************");
+          setDeterminePage({
+            ...determinePage,
+            isAdmin: false,
+            pageInitialized: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Something went wrong!!");
+      });
+  } else {
+    console.log("inititialized");
+  }
+
+  // const a = await get(reference, (snapshot) => {
+  //   const highscore = snapshot;
+  //   console.log("New high score: " + highscore);
+  // });
+  console.log("to return");
+  if (!determinePage.isAdmin && !determinePage.pageInitialized) {
+    console.log("is Splash");
+    return (
+      <Stack.Navigator initialRouteName="splash">
+        <Stack.Screen name="splash" component={SplashScreen} />
+      </Stack.Navigator>
+    );
+  } else if (determinePage.isAdmin) {
+    console.log("is Admin");
+    return (
+      <Stack.Navigator initialRouteName="test">
+        <Stack.Screen name="test" component={AdminHomeScreen} />
+      </Stack.Navigator>
+    );
+  } else {
+    console.log("is Employee");
+    return <EmployeeFlowNavigation />;
+  }
+  // return (
+  //   /* <Stack.Navigator initialRouteName="BottomTabNav">
+  //     <Stack.Screen
+  //       name="BottomTabNav"
+  //       component={BottomTabNav}
+  //       options={{ headerShown: false }}
+  //     />
+
+  //     <Stack.Screen name="Check in and outs" component={CheckInAndOutsScreen} />
+  //     <Stack.Screen name="Availability" component={AvailabilityScreen} />
+  //     <Stack.Screen name="Timesheets" component={TimeSheetsScreen} />
+  //     <Stack.Screen name="Uniform records" component={UniformRecordsScreen} />
+  //     <Stack.Screen name="Promoters" component={PromotersScreen} />
+  //   </Stack.Navigator> */
+  // );
 };
 
 export default MainFlowNavigation;
