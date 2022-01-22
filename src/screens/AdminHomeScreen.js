@@ -17,7 +17,7 @@ for (var i = 1; i <= NumItems; i++) {
   Items.push(i);
 }
 
-const HomeScreen = ({ navigation }) => {
+const AdminHomeScreen = ({ navigation }) => {
   const renderItem = ({ item }) => {
     switch (item) {
       case 1:
@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
             item={item}
             onPress={() => {
               console.log(item);
-              navigation.navigate("CheckInAndOuts");
+              navigation.navigate("Check in and outs");
             }}
             carouselViewItemText="Check Ins"
           />
@@ -59,9 +59,9 @@ const HomeScreen = ({ navigation }) => {
             item={item}
             onPress={() => {
               console.log(item);
-              navigation.navigate("TimeSheets");
+              navigation.navigate("Timesheets");
             }}
-            carouselViewItemText="TimeSheets"
+            carouselViewItemText="Timesheets"
           />
         );
       case 5:
@@ -70,7 +70,7 @@ const HomeScreen = ({ navigation }) => {
             item={item}
             onPress={() => {
               console.log(item);
-              navigation.navigate("UniformRecords");
+              navigation.navigate("Uniform records");
             }}
             carouselViewItemText="Uniform Records"
           />
@@ -109,7 +109,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default AdminHomeScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "../src/screens/SettingsScreen";
 import ProfileScreen from "../src/screens/ProfileScreen";
-import HomeScreen from "../src/screens/HomeScreen";
+import AdminHomeScreen from "../src/screens/AdminHomeScreen";
 import CheckInAndOutsScreen from "../src/screens/CheckInAndOutsScreen";
 import AvailabilityScreen from "../src/screens/AvailabilityScreen";
 import TimeSheetsScreen from "../src/screens/TimeSheetsScreen";
@@ -19,7 +19,10 @@ const primaryColor = "#0DF6E3";
 
 function BottomTabNav() {
   return (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={{ showLabel: false }}>
+    <Tab.Navigator
+      initialRouteName="AdminHome"
+      tabBarOptions={{ showLabel: false }}
+    >
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -44,8 +47,8 @@ function BottomTabNav() {
         }}
       />
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="AdminHome"
+        component={AdminHomeScreen}
         options={{
           headerStyle: { backgroundColor: "#201C31" },
           headerTitleStyle: { color: "white" },
@@ -98,17 +101,17 @@ function BottomTabNav() {
 
 const MainFlowNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="BottomTab">
+    <Stack.Navigator initialRouteName="BottomTabNav">
       <Stack.Screen
         name="BottomTabNav"
         component={BottomTabNav}
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen name="CheckInAndOuts" component={CheckInAndOutsScreen} />
+      <Stack.Screen name="Check in and outs" component={CheckInAndOutsScreen} />
       <Stack.Screen name="Availability" component={AvailabilityScreen} />
-      <Stack.Screen name="TimeSheets" component={TimeSheetsScreen} />
-      <Stack.Screen name="UniformRecords" component={UniformRecordsScreen} />
+      <Stack.Screen name="Timesheets" component={TimeSheetsScreen} />
+      <Stack.Screen name="Uniform records" component={UniformRecordsScreen} />
       <Stack.Screen name="Promoters" component={PromotersScreen} />
     </Stack.Navigator>
   );

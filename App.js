@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./src/screens/HomeScreen";
+import HomeScreen from "./src/screens/AdminHomeScreen";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./src/firebase-config";
 import MainFlowNavigation from "./navigation/MainFlowNavigation";

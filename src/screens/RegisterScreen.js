@@ -35,7 +35,15 @@ const RegisterScreen = ({ navigation }) => {
           password
         );
         if (UserCredential) {
-          const isAdmin = isEnabled ? "admins" : "employees/" + code;
+          let isAdmin = isEnabled ? "admins" : "employees";
+          let finalCode;
+          if (isEnabled) {
+            isAdmin = "admins";
+            finalCode = Math.floor(Math.random() * 100 + 1);
+          } else {
+            isAdmin = "employees";
+            finalCode = code;
+          }
           const db = getDatabase();
           const reference = ref(
             db,
@@ -45,6 +53,7 @@ const RegisterScreen = ({ navigation }) => {
             name,
             surname,
             email,
+            code: finalCode,
           });
         } else {
           alert("Something went wrong. Please try again");
@@ -108,6 +117,7 @@ const RegisterScreen = ({ navigation }) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
+            padding: 4,
           }}
         >
           <Text style={{ flex: 1, color: "white", marginLeft: 12 }}>
