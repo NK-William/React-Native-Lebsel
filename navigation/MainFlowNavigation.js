@@ -145,11 +145,15 @@ const MainFlowNavigation = ({ user }) => {
   //   console.log("New high score: " + highscore);
   // });
   console.log("to return");
-  if (!determinePage.isAdmin && !determinePage.pageInitialized) {
+  if (!determinePage.isAdmin) {
     console.log("is Splash");
     return (
       <Stack.Navigator initialRouteName="splash">
-        <Stack.Screen name="splash" component={SplashScreen} />
+        <Stack.Screen
+          name="splash"
+          component={SplashScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     );
   } else if (determinePage.isAdmin) {
