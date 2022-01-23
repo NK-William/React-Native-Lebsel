@@ -14,22 +14,16 @@ const MainFlowNavigation = ({ user }) => {
   });
 
   if (!determinePage.pageInitialized) {
-    console.log("Not initialized");
     const dbRef = ref(getDatabase());
-    console.log(user.uid);
     get(child(dbRef, `users/admins/${user.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log("result is");
-          console.log(snapshot.val());
-          console.log("Ow true *********************");
           setDeterminePage({
             ...determinePage,
             isAdmin: true,
             pageInitialized: true,
           });
         } else {
-          console.log("Ow false *********************");
           setDeterminePage({
             ...determinePage,
             isAdmin: false,
@@ -42,9 +36,7 @@ const MainFlowNavigation = ({ user }) => {
         alert("Something went wrong!!");
       });
   }
-  console.log("to return");
   if (!determinePage.isAdmin && !determinePage.pageInitialized) {
-    console.log("is Splash");
     return (
       <Stack.Navigator initialRouteName="splash">
         <Stack.Screen
@@ -55,10 +47,8 @@ const MainFlowNavigation = ({ user }) => {
       </Stack.Navigator>
     );
   } else if (determinePage.isAdmin) {
-    console.log("is Admin");
     return <AdminFlowNavigation />;
   } else {
-    console.log("is Employee");
     return <EmployeeFlowNavigation />;
   }
 };
