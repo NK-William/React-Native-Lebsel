@@ -4,6 +4,7 @@ import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import Carousel from "react-native-snap-carousel";
 import CarouselCard from "../components/CarouselCard";
+import { homeStyles } from "../styles";
 
 let FirstItem = 3;
 
@@ -86,7 +87,7 @@ const AdminHomeScreen = ({ navigation }) => {
     }
   };
   return (
-    <View style={styles.container}>
+    <View style={homeStyles.container}>
       <View style={styles.subTopContainer}>
         <Text style={styles.welcomeText}>Welcome</Text>
         <Text style={styles.nameText}>Nkuna</Text>
@@ -111,10 +112,6 @@ const AdminHomeScreen = ({ navigation }) => {
 export default AdminHomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#201C31",
-  },
   subTopContainer: {
     flex: 0.3,
     backgroundColor: "#201C31",
