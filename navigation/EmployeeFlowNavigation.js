@@ -12,16 +12,51 @@ const Stack = createNativeStackNavigator();
 
 const EmployeeFlowNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={EmployeeHomeScreen} />
-      <Stack.Screen name="Profile" component={EmployeeProfileScreen} />
+    <Stack.Navigator initialRouteName="EmployeeHome">
       <Stack.Screen
-        name="Availability"
-        component={EmployeeAvailabilityScreen}
+        name="EmployeeHome"
+        component={EmployeeHomeScreen}
+        options={{
+          headerStyle: { backgroundColor: "#201C31" },
+          headerTitleStyle: { color: "white" },
+          title: "Home",
+        }}
       />
-      <Stack.Screen name="Check ins" component={EmployeeCheckInsScreen} />
-      <Stack.Screen name="Timesheets" component={EmployeeTimesheetsScreen} />
-      <Stack.Screen name="Settings" component={EmployeeSettingsScreen} />
+      <Stack.Screen
+        name="EmployeeProfile"
+        component={EmployeeProfileScreen}
+        options={{
+          title: "Profile",
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeAvailability"
+        component={EmployeeAvailabilityScreen}
+        options={{
+          title: "Availability",
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeCheckIns"
+        component={EmployeeCheckInsScreen}
+        options={{
+          title: "Check ins",
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeTimesheets"
+        component={EmployeeTimesheetsScreen}
+        options={{
+          title: "Timesheets",
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeSettings"
+        component={EmployeeSettingsScreen}
+        options={{
+          title: "Settings",
+        }}
+      />
     </Stack.Navigator>
   );
 };
