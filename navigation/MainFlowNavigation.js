@@ -145,7 +145,7 @@ const MainFlowNavigation = ({ user }) => {
   //   console.log("New high score: " + highscore);
   // });
   console.log("to return");
-  if (!determinePage.isAdmin) {
+  if (!determinePage.isAdmin && !determinePage.pageInitialized) {
     console.log("is Splash");
     return (
       <Stack.Navigator initialRouteName="splash">
