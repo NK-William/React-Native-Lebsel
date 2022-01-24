@@ -28,7 +28,23 @@ const EmployeeHomeScreen = () => {
         }}
       >
         <View style={styles.statusView}></View>
-        <View style={styles.bottomTab}></View>
+        <View style={{ ...styles.bottomTab, ...styles.shadow }}>
+          <View>
+            <Text>P</Text>
+          </View>
+          <View>
+            <Text>A</Text>
+          </View>
+          <View style={{ alignSelf: "flex-start" }}>
+            <Text>C</Text>
+          </View>
+          <View>
+            <Text>T</Text>
+          </View>
+          <View>
+            <Text>S</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -37,7 +53,27 @@ const EmployeeHomeScreen = () => {
 export default EmployeeHomeScreen;
 
 const styles = StyleSheet.create({
-  statusContainer: { flex: 1, backgroundColor: "blue" },
-  statusView: { flex: 0.8, backgroundColor: "yellow" },
-  bottomTab: { flex: 0.2, backgroundColor: "red" },
+  statusContainer: { flex: 1, backgroundColor: "white" },
+  statusView: { flex: 0.85, borderWidth: 1, borderColor: "blue" },
+  bottomTab: {
+    backgroundColor: "#F4F1FE",
+    marginTop: 8,
+    marginHorizontal: 8,
+    marginBottom: 8,
+    flex: 0.15,
+    borderRadius: 15,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  shadow: {
+    shadowColor: "#201C31",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
 });
