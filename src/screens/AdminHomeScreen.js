@@ -88,13 +88,13 @@ const AdminHomeScreen = ({ navigation }) => {
   };
   return (
     <View style={homeStyles.container}>
-      <View style={styles.subTopContainer}>
-        <Text style={styles.welcomeText}>Welcome</Text>
-        <Text style={styles.nameText}>Nkuna</Text>
-        <Text style={styles.nameText}>William</Text>
+      <View style={homeStyles.subTopContainer}>
+        <Text style={homeStyles.welcomeText}>Welcome</Text>
+        <Text style={homeStyles.nameText}>Nkuna</Text>
+        <Text style={homeStyles.nameText}>William</Text>
         <Button onPress={handleLogoutTest} title="logout test" />
       </View>
-      <View style={styles.subBottomContainer}>
+      <View style={homeStyles.subBottomContainer}>
         <Carousel
           layout={"default"}
           data={Items}
