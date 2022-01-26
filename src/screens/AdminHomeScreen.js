@@ -4,7 +4,7 @@ import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import Carousel from "react-native-snap-carousel";
 import CarouselCard from "../components/CarouselCard";
-import { homeStyles } from "../styles";
+import { homeStyles } from "../styles/HomeStyles";
 
 let FirstItem = 3;
 

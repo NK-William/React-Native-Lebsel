@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
-import { homeStyles } from "../styles";
+import { homeStyles } from "../styles/HomeStyles";
 
 const handleLogoutTest = async () => {
   try {
@@ -30,19 +30,27 @@ const EmployeeHomeScreen = () => {
         <View style={styles.statusView}></View>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <View>
-            <Text>P</Text>
+            <Text style={styles.tabLabel}>Profile</Text>
           </View>
           <View>
-            <Text>A</Text>
+            <Text style={styles.tabLabel}>Availability</Text>
           </View>
           <View style={{ alignSelf: "flex-start" }}>
-            <Text>C</Text>
+            <View
+              style={{
+                ...styles.shadow,
+                backgroundColor: "blue",
+                height: 45,
+                width: 45,
+                borderRadius: 50,
+              }}
+            ></View>
           </View>
           <View>
-            <Text>T</Text>
+            <Text style={styles.tabLabel}>Timesheets</Text>
           </View>
           <View>
-            <Text>S</Text>
+            <Text style={styles.tabLabel}>Settings</Text>
           </View>
         </View>
       </View>
@@ -76,4 +84,5 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
+  tabLabel: { fontSize: 10, alignSelf: "center" },
 });

@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+export const primaryColor = "#0DF6E3";
+
 export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
