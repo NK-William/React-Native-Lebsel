@@ -14,7 +14,9 @@ const MainFlowNavigation = ({ user }) => {
   });
 
   if (!determinePage.pageInitialized) {
+    console.log("get database");
     const dbRef = ref(getDatabase());
+    console.log("Query");
     get(child(dbRef, `users/admins/${user.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {

@@ -3,6 +3,8 @@ import React from "react";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import { homeStyles } from "../styles/HomeStyles";
+import { PrimaryColor, AccentColor } from "../styles/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 const handleLogoutTest = async () => {
   try {
@@ -29,27 +31,38 @@ const EmployeeHomeScreen = () => {
       >
         <View style={styles.statusView}></View>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
-          <View>
-            <Text style={styles.tabLabel}>Profile</Text>
+          <View style={{ alignItems: "center" }}>
+            <Ionicons name="person" color={AccentColor} size={25} />
+            <Text style={{ ...styles.tabLabel, color: AccentColor }}>
+              Profile
+            </Text>
           </View>
-          <View>
+          <View style={{ alignItems: "center" }}>
+            <Ionicons name="person" color="grey" size={25} />
             <Text style={styles.tabLabel}>Availability</Text>
           </View>
-          <View style={{ alignSelf: "flex-start" }}>
+          <View style={{ alignSelf: "flex-start", alignItems: "center" }}>
             <View
               style={{
                 ...styles.shadow,
-                backgroundColor: "blue",
-                height: 45,
-                width: 45,
+                backgroundColor: PrimaryColor,
+                height: 50,
+                width: 50,
                 borderRadius: 50,
+                marginTop: -16,
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            ></View>
+            >
+              <Ionicons name="location" color="white" size={25} />
+            </View>
           </View>
-          <View>
+          <View style={{ alignItems: "center" }}>
+            <Ionicons name="time" color="grey" size={25} />
             <Text style={styles.tabLabel}>Timesheets</Text>
           </View>
-          <View>
+          <View style={{ alignItems: "center" }}>
+            <Ionicons name="settings" color="grey" size={25} />
             <Text style={styles.tabLabel}>Settings</Text>
           </View>
         </View>
@@ -62,14 +75,14 @@ export default EmployeeHomeScreen;
 
 const styles = StyleSheet.create({
   statusContainer: { flex: 1, backgroundColor: "white" },
-  statusView: { flex: 0.85, borderWidth: 1, borderColor: "blue" },
+  statusView: { flex: 1, borderWidth: 1, borderColor: "blue" },
   bottomTab: {
     backgroundColor: "#F4F1FE",
-    marginTop: 8,
+    marginTop: 16,
     marginHorizontal: 8,
     marginBottom: 8,
-    flex: 0.15,
     borderRadius: 15,
+    height: 65,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",

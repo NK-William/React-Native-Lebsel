@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native";
-import { primaryColor } from "./Colors";
+import { PrimaryColor } from "./Colors";
 
 export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: primaryColor,
+    backgroundColor: PrimaryColor,
   },
   subTopContainer: {
     flex: 0.3,
-    backgroundColor: primaryColor,
+    backgroundColor: PrimaryColor,
     justifyContent: "center",
     alignItems: "center",
   },
