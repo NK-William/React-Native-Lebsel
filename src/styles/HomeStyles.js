@@ -1,15 +1,14 @@
 import { StyleSheet } from "react-native";
-
-export const primaryColor = "#0DF6E3";
+import { primaryColor } from "./Colors";
 
 export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#201C31",
+    backgroundColor: primaryColor,
   },
   subTopContainer: {
     flex: 0.3,
-    backgroundColor: "#201C31",
+    backgroundColor: primaryColor,
     justifyContent: "center",
     alignItems: "center",
   },
