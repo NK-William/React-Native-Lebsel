@@ -8,12 +8,37 @@ const BottomTab = ({ selectedOption }) => {
   return (
     <View style={{ ...styles.bottomTab, ...styles.shadow }}>
       <View style={{ alignItems: "center" }}>
-        <Ionicons name="person" color={AccentColor} size={25} />
-        <Text style={{ ...styles.tabLabel, color: AccentColor }}>Profile</Text>
+        <Ionicons
+          name="person"
+          color={selectedOption == TabOptions.Profile ? AccentColor : "grey"}
+          size={25}
+        />
+        <Text
+          style={{
+            ...styles.tabLabel,
+            color: selectedOption == TabOptions.Profile ? AccentColor : "grey",
+          }}
+        >
+          Profile
+        </Text>
       </View>
       <View style={{ alignItems: "center" }}>
-        <Ionicons name="person" color="grey" size={25} />
-        <Text style={styles.tabLabel}>Availability</Text>
+        <Ionicons
+          name="person"
+          color={
+            selectedOption == TabOptions.Availability ? AccentColor : "grey"
+          }
+          size={25}
+        />
+        <Text
+          style={{
+            ...styles.tabLabel,
+            color:
+              selectedOption == TabOptions.Availability ? AccentColor : "grey",
+          }}
+        >
+          Availability
+        </Text>
       </View>
       <View style={{ alignSelf: "flex-start", alignItems: "center" }}>
         <View
@@ -32,12 +57,35 @@ const BottomTab = ({ selectedOption }) => {
         </View>
       </View>
       <View style={{ alignItems: "center" }}>
-        <Ionicons name="time" color="grey" size={25} />
-        <Text style={styles.tabLabel}>Timesheets</Text>
+        <Ionicons
+          name="time"
+          color={selectedOption == TabOptions.Timesheets ? AccentColor : "grey"}
+          size={25}
+        />
+        <Text
+          style={{
+            ...styles.tabLabel,
+            color:
+              selectedOption == TabOptions.Timesheets ? AccentColor : "grey",
+          }}
+        >
+          Timesheets
+        </Text>
       </View>
       <View style={{ alignItems: "center" }}>
-        <Ionicons name="settings" color="grey" size={25} />
-        <Text style={styles.tabLabel}>Settings</Text>
+        <Ionicons
+          name="settings"
+          color={selectedOption == TabOptions.Settings ? AccentColor : "grey"}
+          size={25}
+        />
+        <Text
+          style={{
+            ...styles.tabLabel,
+            color: selectedOption == TabOptions.Settings ? AccentColor : "grey",
+          }}
+        >
+          Settings
+        </Text>
       </View>
     </View>
   );

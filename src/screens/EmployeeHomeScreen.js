@@ -32,7 +32,7 @@ const EmployeeHomeScreen = () => {
         }}
       >
         <View style={styles.statusView}></View>
-        <BottomTab selectedOption={TabOptions.Home} />
+        <BottomTab selectedOption={TabOptions.Availability} />
       </View>
     </View>
   );
