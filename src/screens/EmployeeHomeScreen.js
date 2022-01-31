@@ -29,7 +29,6 @@ const EmployeeHomeScreen = () => {
       <View
         style={{
           ...homeStyles.subBottomContainer,
-          ...styles.statusContainer,
         }}
       >
         <View style={styles.statusView}></View>

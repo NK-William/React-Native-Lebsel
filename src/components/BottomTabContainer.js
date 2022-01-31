@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { TabOptions } from "../constants/TabOptions";
 import EmployeeHomeScreen from "../screens/EmployeeHomeScreen";
 
 const BottomTabContainer = ({ selectedOption }) => {
+  const [item, setItem] = useState(TabOptions.Home);
   console.log(selectedOption);
   return (
     <View style={styles.container}>
@@ -12,42 +15,38 @@ const BottomTabContainer = ({ selectedOption }) => {
       <View style={{ backgroundColor: "white" }}>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <View style={{ alignItems: "center" }}>
-            <Ionicons
-              name="person"
-              color={
-                selectedOption == TabOptions.Profile ? AccentColor : "grey"
-              }
-              size={25}
-            />
-            <Text
-              style={{
-                ...styles.tabLabel,
-                color:
-                  selectedOption == TabOptions.Profile ? AccentColor : "grey",
-              }}
-            >
-              Profile
-            </Text>
+            <Pressable onPress={() => setItem(TabOptions.Profile)}>
+              <Ionicons
+                name="person"
+                color={item == TabOptions.Profile ? AccentColor : "grey"}
+                size={25}
+              />
+              <Text
+                style={{
+                  ...styles.tabLabel,
+                  color: item == TabOptions.Profile ? AccentColor : "grey",
+                }}
+              >
+                Profile
+              </Text>
+            </Pressable>
           </View>
           <View style={{ alignItems: "center" }}>
-            <Ionicons
-              name="person"
-              color={
-                selectedOption == TabOptions.Availability ? AccentColor : "grey"
-              }
-              size={25}
-            />
-            <Text
-              style={{
-                ...styles.tabLabel,
-                color:
-                  selectedOption == TabOptions.Availability
-                    ? AccentColor
-                    : "grey",
-              }}
-            >
-              Availability
-            </Text>
+            <Pressable onPress={() => setItem(TabOptions.Availability)}>
+              <Ionicons
+                name="calendar"
+                color={item == TabOptions.Availability ? AccentColor : "grey"}
+                size={25}
+              />
+              <Text
+                style={{
+                  ...styles.tabLabel,
+                  color: item == TabOptions.Availability ? AccentColor : "grey",
+                }}
+              >
+                Availability
+              </Text>
+            </Pressable>
           </View>
           <View style={{ alignSelf: "flex-start", alignItems: "center" }}>
             <View
@@ -66,42 +65,38 @@ const BottomTabContainer = ({ selectedOption }) => {
             </View>
           </View>
           <View style={{ alignItems: "center" }}>
-            <Ionicons
-              name="time"
-              color={
-                selectedOption == TabOptions.Timesheets ? AccentColor : "grey"
-              }
-              size={25}
-            />
-            <Text
-              style={{
-                ...styles.tabLabel,
-                color:
-                  selectedOption == TabOptions.Timesheets
-                    ? AccentColor
-                    : "grey",
-              }}
-            >
-              Timesheets
-            </Text>
+            <Pressable onPress={() => setItem(TabOptions.Timesheets)}>
+              <Ionicons
+                name="time"
+                color={item == TabOptions.Timesheets ? AccentColor : "grey"}
+                size={25}
+              />
+              <Text
+                style={{
+                  ...styles.tabLabel,
+                  color: item == TabOptions.Timesheets ? AccentColor : "grey",
+                }}
+              >
+                Timesheets
+              </Text>
+            </Pressable>
           </View>
           <View style={{ alignItems: "center" }}>
-            <Ionicons
-              name="settings"
-              color={
-                selectedOption == TabOptions.Settings ? AccentColor : "grey"
-              }
-              size={25}
-            />
-            <Text
-              style={{
-                ...styles.tabLabel,
-                color:
-                  selectedOption == TabOptions.Settings ? AccentColor : "grey",
-              }}
-            >
-              Settings
-            </Text>
+            <Pressable onPress={() => setItem(TabOptions.Settings)}>
+              <Ionicons
+                name="settings"
+                color={item == TabOptions.Settings ? AccentColor : "grey"}
+                size={25}
+              />
+              <Text
+                style={{
+                  ...styles.tabLabel,
+                  color: item == TabOptions.Settings ? AccentColor : "grey",
+                }}
+              >
+                Settings
+              </Text>
+            </Pressable>
           </View>
         </View>
       </View>
