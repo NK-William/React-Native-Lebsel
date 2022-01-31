@@ -7,15 +7,16 @@ import EmployeeAvailabilityScreen from "../src/screens/EmployeeAvailabilityScree
 import EmployeeCheckInsScreen from "../src/screens/EmployeeCheckInsScreen";
 import EmployeeTimesheetsScreen from "../src/screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../src/screens/EmployeeSettingsScreen";
+import BottomTabContainer from "../src/components/BottomTabContainer";
 
 const Stack = createNativeStackNavigator();
 
 const EmployeeFlowNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="EmployeeHome">
+    <Stack.Navigator initialRouteName="BottomTabContainer">
       <Stack.Screen
-        name="EmployeeHome"
-        component={EmployeeHomeScreen}
+        name="BottomTabContainer"
+        component={BottomTabContainer}
         options={{
           headerStyle: { backgroundColor: "#201C31" },
           headerTitleStyle: { color: "white" },

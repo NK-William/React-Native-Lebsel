@@ -5,8 +5,9 @@ import { signOut } from "firebase/auth";
 import { homeStyles } from "../styles/HomeStyles";
 import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import BottomTab from "../components/BottomTab";
+import BottomTabContainer from "../components/BottomTabContainer";
 import { TabOptions } from "../constants/TabOptions";
+import EmployeeTimesheetsScreen from "./EmployeeTimesheetsScreen";
 
 const EmployeeHomeScreen = () => {
   const handleLogoutTest = async () => {
@@ -32,7 +33,6 @@ const EmployeeHomeScreen = () => {
         }}
       >
         <View style={styles.statusView}></View>
-        <BottomTab selectedOption={TabOptions.Availability} />
       </View>
     </View>
   );
