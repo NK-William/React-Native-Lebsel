@@ -10,9 +10,14 @@ import EmployeeAvailabilityScreen from "../screens/EmployeeAvailabilityScreen";
 import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 
-const BottomTabContainer = ({ selectedOption }) => {
+const BottomTabContainer = () => {
   const [item, setItem] = useState(TabOptions.Home);
-  console.log(selectedOption);
+
+  const openPage = (selectedItem) => {
+    if (selectedItem != item) {
+      setItem(selectedItem);
+    }
+  };
   return (
     <View style={styles.container}>
       {item == TabOptions.Profile ? (
@@ -30,7 +35,7 @@ const BottomTabContainer = ({ selectedOption }) => {
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <Pressable
             style={{ alignItems: "center" }}
-            onPress={() => setItem(TabOptions.Profile)}
+            onPress={() => openPage(TabOptions.Profile)}
           >
             <Ionicons
               name="person"
@@ -49,7 +54,7 @@ const BottomTabContainer = ({ selectedOption }) => {
 
           <Pressable
             style={{ alignItems: "center" }}
-            onPress={() => setItem(TabOptions.Availability)}
+            onPress={() => openPage(TabOptions.Availability)}
           >
             <Ionicons
               name="calendar"
@@ -83,7 +88,7 @@ const BottomTabContainer = ({ selectedOption }) => {
           </View>
           <Pressable
             style={{ alignItems: "center" }}
-            onPress={() => setItem(TabOptions.Timesheets)}
+            onPress={() => openPage(TabOptions.Timesheets)}
           >
             <Ionicons
               name="time"
@@ -101,7 +106,7 @@ const BottomTabContainer = ({ selectedOption }) => {
           </Pressable>
           <Pressable
             style={{ alignItems: "center" }}
-            onPress={() => setItem(TabOptions.Settings)}
+            onPress={() => openPage(TabOptions.Settings)}
           >
             <Ionicons
               name="settings"
