@@ -3,7 +3,7 @@ import React from "react";
 
 const EmployeeAvailabilityScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>EmployeeAvailabilityScreen</Text>
     </View>
   );
@@ -11,4 +11,4 @@ const EmployeeAvailabilityScreen = () => {
 
 export default EmployeeAvailabilityScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ container: { flex: 1 } });

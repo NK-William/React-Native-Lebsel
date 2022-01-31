@@ -5,13 +5,27 @@ import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { TabOptions } from "../constants/TabOptions";
 import EmployeeHomeScreen from "../screens/EmployeeHomeScreen";
+import EmployeeProfileScreen from "../screens/EmployeeProfileScreen";
+import EmployeeAvailabilityScreen from "../screens/EmployeeAvailabilityScreen";
+import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
+import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 
 const BottomTabContainer = ({ selectedOption }) => {
   const [item, setItem] = useState(TabOptions.Home);
   console.log(selectedOption);
   return (
     <View style={styles.container}>
-      <EmployeeHomeScreen />
+      {item == TabOptions.Profile ? (
+        <EmployeeProfileScreen />
+      ) : item == TabOptions.Availability ? (
+        <EmployeeAvailabilityScreen />
+      ) : item == TabOptions.Timesheets ? (
+        <EmployeeTimesheetsScreen />
+      ) : item == TabOptions.Settings ? (
+        <EmployeeSettingsScreen />
+      ) : (
+        <EmployeeHomeScreen />
+      )}
       <View style={{ backgroundColor: "white" }}>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <Pressable

@@ -3,7 +3,7 @@ import React from "react";
 
 const EmployeeProfileScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>EmployeeProfileScreen</Text>
     </View>
   );
@@ -11,4 +11,4 @@ const EmployeeProfileScreen = () => {
 
 export default EmployeeProfileScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ container: { flex: 1 } });
