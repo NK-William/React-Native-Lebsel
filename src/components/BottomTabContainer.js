@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { TabOptions } from "../constants/TabOptions";
@@ -21,6 +27,16 @@ const BottomTabContainer = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          backgroundColor: "blue",
+          height: 45,
+          width: 30,
+          position: "absolute",
+          right: 0,
+          top: 8,
+        }}
+      ></View>
       {item == TabOptions.Profile ? (
         <EmployeeProfileScreen />
       ) : item == TabOptions.Availability ? (
@@ -71,22 +87,19 @@ const BottomTabContainer = ({ navigation }) => {
               Availability
             </Text>
           </Pressable>
-          <View style={{ alignSelf: "flex-start", alignItems: "center" }}>
+          <TouchableOpacity
+            onPress={() => alert("Open maps")}
+            style={{ alignSelf: "flex-start", alignItems: "center" }}
+          >
             <View
               style={{
                 ...styles.shadow,
-                backgroundColor: PrimaryColor,
-                height: 50,
-                width: 50,
-                borderRadius: 50,
-                marginTop: -16,
-                justifyContent: "center",
-                alignItems: "center",
+                ...styles.checkInButton,
               }}
             >
               <Ionicons name="location" color="white" size={25} />
             </View>
-          </View>
+          </TouchableOpacity>
           <Pressable
             style={{ alignItems: "center" }}
             onPress={() => openPage(TabOptions.Timesheets)}
@@ -153,6 +166,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
     elevation: 5,
+  },
+  checkInButton: {
+    backgroundColor: PrimaryColor,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    marginTop: -16,
+    justifyContent: "center",
+    alignItems: "center",
   },
   tabLabel: { fontSize: 10, alignSelf: "center" },
 });
