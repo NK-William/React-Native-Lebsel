@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   StyleSheet,
   Text,
@@ -27,9 +26,14 @@ const BottomTabContainer = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.navHomeView}>
-        <Ionicons name="home" color="white" size={25} />
-      </View>
+      {item != TabOptions.Home ? (
+        <TouchableOpacity
+          onPress={() => openPage(TabOptions.Home)}
+          style={styles.navHomeView}
+        >
+          <Ionicons name="home" color="white" size={25} />
+        </TouchableOpacity>
+      ) : null}
       {item == TabOptions.Profile ? (
         <EmployeeProfileScreen />
       ) : item == TabOptions.Availability ? (
