@@ -10,9 +10,10 @@ import EmployeeAvailabilityScreen from "../screens/EmployeeAvailabilityScreen";
 import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 
-const BottomTabContainer = () => {
+const BottomTabContainer = ({ navigation }) => {
   const [item, setItem] = useState(TabOptions.Home);
 
+  navigation.setOptions({ title: item });
   const openPage = (selectedItem) => {
     if (selectedItem != item) {
       setItem(selectedItem);
@@ -131,7 +132,7 @@ const BottomTabContainer = () => {
 export default BottomTabContainer;
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, backgroundColor: "white" },
   bottomTab: {
     backgroundColor: "#F4F1FE",
     marginTop: 16,
