@@ -27,16 +27,9 @@ const BottomTabContainer = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          backgroundColor: "blue",
-          height: 45,
-          width: 30,
-          position: "absolute",
-          right: 0,
-          top: 8,
-        }}
-      ></View>
+      <View style={styles.navHomeView}>
+        <Ionicons name="home" color="white" size={25} />
+      </View>
       {item == TabOptions.Profile ? (
         <EmployeeProfileScreen />
       ) : item == TabOptions.Availability ? (
@@ -146,6 +139,18 @@ export default BottomTabContainer;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "white" },
+  navHomeView: {
+    backgroundColor: PrimaryColor,
+    height: 48,
+    width: 33,
+    position: "absolute",
+    right: 0,
+    top: 8,
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   bottomTab: {
     backgroundColor: "#F4F1FE",
     marginTop: 16,
