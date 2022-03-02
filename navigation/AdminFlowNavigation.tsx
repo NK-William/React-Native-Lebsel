@@ -11,7 +11,7 @@ import UniformRecordsScreen from "../src/screens/UniformRecordsScreen";
 import PromotersScreen from "../src/screens/PromotersScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
-import { primaryColor } from "../src/styles/HomeStyles";
+import { PrimaryColor } from "../src/styles/Colors";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,12 +30,12 @@ function BottomTabNav() {
             <View>
               <Ionicons
                 name="person"
-                color={focused ? primaryColor : "grey"}
+                color={focused ? PrimaryColor : "grey"}
                 size={25}
               />
               <Text
                 style={{
-                  color: focused ? primaryColor : "grey",
+                  color: focused ? PrimaryColor : "grey",
                   ...styles.tabLabel,
                 }}
               >
@@ -55,12 +55,12 @@ function BottomTabNav() {
             <View>
               <Ionicons
                 name="home"
-                color={focused ? primaryColor : "grey"}
+                color={focused ? PrimaryColor : "grey"}
                 size={25}
               />
               <Text
                 style={{
-                  color: focused ? primaryColor : "grey",
+                  color: focused ? PrimaryColor : "grey",
                   ...styles.tabLabel,
                 }}
               >
@@ -78,12 +78,12 @@ function BottomTabNav() {
             <View>
               <Ionicons
                 name="settings"
-                color={focused ? primaryColor : "grey"}
+                color={focused ? PrimaryColor : "grey"}
                 size={25}
               />
               <Text
                 style={{
-                  color: focused ? primaryColor : "grey",
+                  color: focused ? PrimaryColor : "grey",
                   marginLeft: -6,
                   ...styles.tabLabel,
                 }}

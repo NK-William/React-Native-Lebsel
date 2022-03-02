@@ -5,6 +5,7 @@ import {
   View,
   Pressable,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,11 +16,11 @@ import EmployeeAvailabilityScreen from "../screens/EmployeeAvailabilityScreen";
 import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 
-const BottomTabContainer = ({ navigation }) => {
+const BottomTabContainer = ({ navigation }: any) => {
   const [item, setItem] = useState(TabOptions.Home);
 
   navigation.setOptions({ title: item });
-  const openPage = (selectedItem) => {
+  const openPage = (selectedItem: any) => {
     if (selectedItem != item) {
       setItem(selectedItem);
     }
@@ -85,7 +86,7 @@ const BottomTabContainer = ({ navigation }) => {
             </Text>
           </Pressable>
           <TouchableOpacity
-            onPress={() => alert("Open maps")}
+            onPress={() => console.log("open map")}
             style={{ alignSelf: "flex-start", alignItems: "center" }}
           >
             <View

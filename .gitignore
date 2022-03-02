@@ -1,3 +1,4 @@
 src/firebase-config.js
 .expo
 node_modules
+package-lock

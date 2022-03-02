@@ -13,7 +13,7 @@ const EmployeeHomeScreen = () => {
   const handleLogoutTest = async () => {
     try {
       await signOut(auth);
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };

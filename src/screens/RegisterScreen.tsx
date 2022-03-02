@@ -13,7 +13,7 @@ import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }: any) => {
   // for inputs
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -59,7 +59,7 @@ const RegisterScreen = ({ navigation }) => {
           alert("Something went wrong. Please try again");
         }
         setLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         alert(error.message);
         setLoading(false);
       }
