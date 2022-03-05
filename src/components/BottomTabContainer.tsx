@@ -28,14 +28,6 @@ const BottomTabContainer = ({ navigation }: any) => {
   };
   return (
     <View style={styles.container}>
-      {item != TabOptions.Home ? (
-        <TouchableOpacity
-          onPress={() => openPage(TabOptions.Home)}
-          style={styles.navHomeView}
-        >
-          <Ionicons name="home" color="white" size={25} />
-        </TouchableOpacity>
-      ) : null}
       {item == TabOptions.Profile ? (
         <EmployeeProfileScreen />
       ) : item == TabOptions.Availability ? (
@@ -49,6 +41,14 @@ const BottomTabContainer = ({ navigation }: any) => {
         : (
           <EmployeeHomeScreen />
         )}
+      {item != TabOptions.Home ? (
+        <TouchableOpacity
+          onPress={() => openPage(TabOptions.Home)}
+          style={styles.navHomeView}
+        >
+          <Ionicons name="home" color="white" size={25} />
+        </TouchableOpacity>
+      ) : null}
       <View style={{ backgroundColor: "white" }}>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <Pressable
