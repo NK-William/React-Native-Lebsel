@@ -8,6 +8,7 @@ import EmployeeCheckInsScreen from "../src/screens/EmployeeCheckInsScreen";
 import EmployeeTimesheetsScreen from "../src/screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../src/screens/EmployeeSettingsScreen";
 import BottomTabContainer from "../src/components/BottomTabContainer";
+import CheckInsScreen from "../src/components/BottomTabContainer";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,13 @@ const EmployeeFlowNavigation = () => {
         component={EmployeeSettingsScreen}
         options={{
           title: "Settings",
+        }}
+      />
+      <Stack.Screen
+        name="CheckIns"
+        component={CheckInsScreen}
+        options={{
+          title: "Check-ins ",
         }}
       />
     </Stack.Navigator>

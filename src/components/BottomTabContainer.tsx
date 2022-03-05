@@ -15,6 +15,7 @@ import EmployeeProfileScreen from "../screens/EmployeeProfileScreen";
 import EmployeeAvailabilityScreen from "../screens/EmployeeAvailabilityScreen";
 import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
+import CheckInsScreen from "../screens/CheckInsScreen";
 
 const BottomTabContainer = ({ navigation }: any) => {
   const [item, setItem] = useState(TabOptions.Home);
@@ -43,9 +44,11 @@ const BottomTabContainer = ({ navigation }: any) => {
         <EmployeeTimesheetsScreen />
       ) : item == TabOptions.Settings ? (
         <EmployeeSettingsScreen />
-      ) : (
-        <EmployeeHomeScreen />
-      )}
+      ) : item == TabOptions.Map ?
+        <CheckInsScreen />
+        : (
+          <EmployeeHomeScreen />
+        )}
       <View style={{ backgroundColor: "white" }}>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <Pressable
@@ -86,7 +89,7 @@ const BottomTabContainer = ({ navigation }: any) => {
             </Text>
           </Pressable>
           <TouchableOpacity
-            onPress={() => console.log("open map")}
+            onPress={() => openPage(TabOptions.Map)}
             style={{ alignSelf: "flex-start", alignItems: "center" }}
           >
             <View
