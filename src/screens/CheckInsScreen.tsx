@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import MapView from 'react-native-maps';
 import React from 'react'
 
+// current state: https://docs.expo.dev/versions/latest/sdk/location/#configuration (I already installed expo-location)
 const CheckInsScreen = () => {
     return (
         <View style={styles.container}>
