@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 const ItemWidth = 200.0;
 const ItemHeight = 300.0;
 
-const CarouselCard = ({ onPress, item, carouselViewItemText }: any) => {
+const CarouselCard = ({ onPress, item, carouselViewItemText }) => {
   return (
     <Pressable onPress={onPress}>
       <>
@@ -14,12 +14,12 @@ const CarouselCard = ({ onPress, item, carouselViewItemText }: any) => {
               item === 1
                 ? require("../../assets/availability.jpg")
                 : item === 2
-                  ? require("../../assets/promoters.jpg")
-                  : item === 3
-                    ? require("../../assets/checkins.jpg")
-                    : item === 4
-                      ? require("../../assets/timesheets.jpg")
-                      : require("../../assets/uniform.jpg")
+                ? require("../../assets/promoters.jpg")
+                : item === 3
+                ? require("../../assets/checkins.jpg")
+                : item === 4
+                ? require("../../assets/timesheets.jpg")
+                : require("../../assets/uniform.jpg")
             }
             style={{
               flex: 1,

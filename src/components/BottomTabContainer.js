@@ -17,11 +17,11 @@ import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 import CheckInsScreen from "../screens/CheckInsScreen";
 
-const BottomTabContainer = ({ navigation }: any) => {
+const BottomTabContainer = ({ navigation }) => {
   const [item, setItem] = useState(TabOptions.Home);
 
   navigation.setOptions({ title: item });
-  const openPage = (selectedItem: any) => {
+  const openPage = (selectedItem) => {
     if (selectedItem != item) {
       setItem(selectedItem);
     }
@@ -36,11 +36,11 @@ const BottomTabContainer = ({ navigation }: any) => {
         <EmployeeTimesheetsScreen />
       ) : item == TabOptions.Settings ? (
         <EmployeeSettingsScreen />
-      ) : item == TabOptions.Map ?
+      ) : item == TabOptions.Map ? (
         <CheckInsScreen />
-        : (
-          <EmployeeHomeScreen />
-        )}
+      ) : (
+        <EmployeeHomeScreen />
+      )}
       {item != TabOptions.Home ? (
         <TouchableOpacity
           onPress={() => openPage(TabOptions.Home)}

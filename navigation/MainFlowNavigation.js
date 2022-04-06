@@ -7,7 +7,7 @@ import AdminFlowNavigation from "./AdminFlowNavigation";
 
 const Stack = createNativeStackNavigator();
 
-const MainFlowNavigation = ({ user }: any) => {
+const MainFlowNavigation = ({ user }) => {
   const [determinePage, setDeterminePage] = useState({
     isAdmin: false,
     pageInitialized: false,

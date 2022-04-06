@@ -4,5 +4,5 @@ export const TabOptions = {
   Timesheets: "Timesheets",
   Settings: "Settings",
   Home: "Home",
-  Map: "Check-ins"
+  Map: "Check-ins",
 };

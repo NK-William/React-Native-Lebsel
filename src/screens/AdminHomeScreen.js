@@ -13,13 +13,13 @@ const ItemWidth = 200.0;
 const ItemHeight = 300.0;
 
 const NumItems = 5;
-const Items: any = [];
+const Items = [];
 for (var i = 1; i <= NumItems; i++) {
   Items.push(i);
 }
 
-const AdminHomeScreen = ({ navigation }: any) => {
-  const renderItem = ({ item }: any) => {
+const AdminHomeScreen = ({ navigation }) => {
+  const renderItem = ({ item }) => {
     switch (item) {
       case 1:
         return (

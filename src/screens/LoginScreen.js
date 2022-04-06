@@ -11,7 +11,7 @@ import { Text } from "react-native-elements";
 import { auth } from "../firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-const LoginScreen = ({ navigation }: any) => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const LoginScreen = ({ navigation }: any) => {
         if (!user) {
           alert("Something went wrong. Please try again");
         }
-      } catch (error: any) {
+      } catch (error) {
         alert(error.message);
         setLoading(false);
       }
