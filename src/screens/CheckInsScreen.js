@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
 
@@ -17,7 +17,7 @@ const CheckInsScreen = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      //   console.log(location);
       setLocation(location);
     })();
   }, []);
@@ -29,23 +29,21 @@ const CheckInsScreen = () => {
     text = JSON.stringify(location);
   }
 
-  alert(text);
+  //   alert(text);
+
+  const mapRegion = location
+    ? {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
+    : null;
 
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={
-          location
-            ? {
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }
-            : null
-        }
-      />
+      <MapView style={styles.map} region={mapRegion} />
+      {location ? <Marker coordinate={mapRegion} title="Marker" /> : null}
     </View>
   );
 };
