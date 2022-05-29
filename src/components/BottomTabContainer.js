@@ -158,6 +158,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#201C31",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
   },
   bottomTab: {
     backgroundColor: "#F4F1FE",
