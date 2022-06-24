@@ -1,10 +1,18 @@
-import { StyleSheet, TouchableOpacity, View, Image, Text } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  TextInput,
+  Image,
+  Text,
+} from "react-native";
+import React, { useState } from "react";
 import { LighterPrimaryColor, PrimaryColor } from "../styles/Colors";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 
 // Add Glassmorphism and line dividers between texts.
 const EmployeeProfileScreen = () => {
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <View style={styles.container}>
       <Image
@@ -18,24 +26,69 @@ const EmployeeProfileScreen = () => {
         source={require("../../public/images/pp.jpg")}
       />
       <View style={styles.floatingButtonContainer}>
-        <TouchableOpacity style={styles.floatingButton}>
-          <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
-        </TouchableOpacity>
+        {isEdit ? (
+          <TouchableOpacity
+            style={styles.floatingButton}
+            onPress={() => setIsEdit(false)}
+          >
+            <FontAwesome5 name="save" size={24} color={PrimaryColor} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.floatingButton}
+            onPress={() => setIsEdit(true)}
+          >
+            <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity style={styles.floatingButton}>
           <FontAwesome name="camera" size={24} color={PrimaryColor} />
         </TouchableOpacity>
       </View>
-      <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
-        William Nkuna
-      </Text>
-      <View style={styles.lineDivider} />
-      <Text style={styles.text}>William@gmail.com</Text>
-      <View style={styles.lineDivider} />
-      <Text style={styles.text}>Centurion, Pretoria, Village Valencia</Text>
-      <View style={styles.lineDivider} />
-      <View style={styles.lineDivider} />
-      {/* Had to duplicate the code since the one above does not show the line divider */}
-      <Text style={styles.text}>0712345678</Text>
+      {isEdit ? (
+        <View>
+          <TextInput
+            style={styles.textInput}
+            textAlign={"center"}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <TextInput
+            style={styles.textInput}
+            textAlign={"center"}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <TextInput
+            style={styles.textInput}
+            textAlign={"center"}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <TextInput
+            style={styles.textInput}
+            textAlign={"center"}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
+      ) : (
+        <View>
+          <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
+            William Nkuna
+          </Text>
+          <View style={styles.lineDivider} />
+          <Text style={styles.text}>William@gmail.com</Text>
+          <View style={styles.lineDivider} />
+          <Text style={styles.text}>Centurion, Pretoria, Village Valencia</Text>
+          <View style={styles.lineDivider} />
+          <View style={styles.lineDivider} />
+          {/* Had to duplicate the code since the one above does not show the line divider */}
+          <Text style={styles.text}>0712345678</Text>
+        </View>
+      )}
+
       {/* </View> */}
     </View>
   );
@@ -76,12 +129,24 @@ const styles = StyleSheet.create({
     borderRadius: 150,
     height: 300,
   },
+
   floatingButtonContainer: {
     marginTop: 8,
     alignSelf: "flex-end",
+    height: 26,
     flexDirection: "row",
   },
   floatingButton: {
     marginRight: 18,
+  },
+  textInput: {
+    borderColor: PrimaryColor,
+    borderWidth: 1,
+    color: PrimaryColor,
+    alignItems: "center",
+    padding: 4,
+    marginTop: 8,
+    marginHorizontal: 18,
+    borderRadius: 12,
   },
 });
