@@ -7,62 +7,36 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 const EmployeeProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.cardView}>
-        <Image
-          style={styles.image}
-          source={require("../../public/images/pp.jpg")}
-        />
-        <View style={styles.floatingButtonContainer}>
-          <TouchableOpacity style={styles.floatingButton}>
-            <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.floatingButton}>
-            <FontAwesome name="camera" size={24} color={PrimaryColor} />
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            color: PrimaryColor,
-            marginBottom: 8,
-            marginTop: 4,
-            fontSize: 20,
-            marginHorizontal: 20,
-            fontWeight: "bold",
-          }}
-        >
-          William Nkuna
-        </Text>
-        <Text
-          style={{
-            color: PrimaryColor,
-            marginBottom: 4,
-            fontSize: 16,
-            marginHorizontal: 20,
-          }}
-        >
-          William@gmail.com
-        </Text>
-        <Text
-          style={{
-            color: PrimaryColor,
-            marginBottom: 4,
-            fontSize: 16,
-            marginHorizontal: 20,
-          }}
-        >
-          Centurion, Pretoria, Village Valencia
-        </Text>
-        <Text
-          style={{
-            color: PrimaryColor,
-            marginBottom: 4,
-            fontSize: 16,
-            marginHorizontal: 20,
-          }}
-        >
-          0712345678
-        </Text>
+      <Image
+        style={styles.blurImage}
+        source={require("../../public/images/pp.jpg")}
+        blurRadius={70}
+      />
+      {/* <View style={styles.cardView}> */}
+      <Image
+        style={styles.image}
+        source={require("../../public/images/pp.jpg")}
+      />
+      <View style={styles.floatingButtonContainer}>
+        <TouchableOpacity style={styles.floatingButton}>
+          <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.floatingButton}>
+          <FontAwesome name="camera" size={24} color={PrimaryColor} />
+        </TouchableOpacity>
       </View>
+      <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
+        William Nkuna
+      </Text>
+      <View style={styles.lineDivider} />
+      <Text style={styles.text}>William@gmail.com</Text>
+      <View style={styles.lineDivider} />
+      <Text style={styles.text}>Centurion, Pretoria, Village Valencia</Text>
+      <View style={styles.lineDivider} />
+      <View style={styles.lineDivider} />
+      {/* Had to duplicate the code since the one above does not show the line divider */}
+      <Text style={styles.text}>0712345678</Text>
+      {/* </View> */}
     </View>
   );
 };
@@ -71,18 +45,35 @@ export default EmployeeProfileScreen;
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  cardView: {
+  /*cardView: {
     flex: 1,
-    backgroundColor: LighterPrimaryColor,
+    backgroundColor: `${LighterPrimaryColor}00`,
     margin: 12,
     marginTop: 24,
     borderRadius: 8,
+  },*/
+  blurImage: {
+    position: "absolute",
+  },
+  text: {
+    color: PrimaryColor,
+    marginBottom: 4,
+    fontSize: 16,
+    marginHorizontal: 20,
+    alignSelf: "center",
+  },
+  lineDivider: {
+    height: 0.5,
+    alignSelf: "center",
+    width: 180,
+    backgroundColor: "white",
+    margin: 2,
   },
   image: {
     marginTop: 40,
     alignSelf: "center",
     width: 300,
-    borderRadius: 8,
+    borderRadius: 150,
     height: 300,
   },
   floatingButtonContainer: {

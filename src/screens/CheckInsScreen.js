@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 8,
     padding: 10,
+    marginBottom: 18,
     width: "90%",
     alignSelf: "center",
     borderRadius: 8,

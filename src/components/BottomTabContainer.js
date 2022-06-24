@@ -50,6 +50,15 @@ const BottomTabContainer = ({ navigation }) => {
         </TouchableOpacity>
       ) : null}
       <View style={{ backgroundColor: "white" }}>
+        <View
+          style={{
+            backgroundColor: "white",
+            height: 18,
+            marginTop: -18,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 12,
+          }}
+        ></View>
         <View style={{ ...styles.bottomTab, ...styles.shadow }}>
           <Pressable
             style={{ alignItems: "center" }}
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
   },
   bottomTab: {
     backgroundColor: "#F4F1FE",
-    marginTop: 16,
+    marginTop: 4,
     marginHorizontal: 8,
     marginBottom: 8,
     borderRadius: 15,
