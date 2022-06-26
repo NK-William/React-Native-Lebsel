@@ -17,9 +17,9 @@ import EmployeeTimesheetsScreen from "../screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../screens/EmployeeSettingsScreen";
 import CheckInsScreen from "../screens/CheckInsScreen";
 
-const BottomTabContainer = ({ navigation }) => {
+const BottomTabContainer = ({ navigation, route }) => {
   const [item, setItem] = useState(TabOptions.Home);
-
+  console.log("In Bottom tab " + route.params?.photo);
   navigation.setOptions({ title: item });
   const openPage = (selectedItem) => {
     if (selectedItem != item) {
@@ -29,7 +29,7 @@ const BottomTabContainer = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {item == TabOptions.Profile ? (
-        <EmployeeProfileScreen />
+        <EmployeeProfileScreen photo={route.params?.photo} />
       ) : item == TabOptions.Availability ? (
         <EmployeeAvailabilityScreen />
       ) : item == TabOptions.Timesheets ? (

@@ -12,28 +12,28 @@ import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/core";
 
 // Add Glassmorphism and line dividers between texts.
-const EmployeeProfileScreen = () => {
+const EmployeeProfileScreen = ({ photo }) => {
   const navigation = useNavigation();
   const route = useRoute();
   const [isEdit, setIsEdit] = useState(false);
 
-  useEffect(() => {
-    if (route.params?.photo) {
-      console.log("Route with" + route.params?.photo);
-    }
-  }, [route.params?.photo]);
+  useEffect(() => {}, []);
   return (
     <View style={styles.container}>
       <Image
         style={styles.blurImage}
-        source={require("../../public/images/pp.jpg")}
+        source={
+          photo
+            ? { uri: "data:image/jpg;base64," + route.params?.photo.base64 }
+            : require("../../public/images/pp.jpg")
+        }
         blurRadius={65}
       />
       {/* <View style={styles.cardView}> */}
       <Image
         style={styles.image}
         source={
-          route.params?.photo
+          photo
             ? { uri: "data:image/jpg;base64," + route.params?.photo.base64 }
             : require("../../public/images/pp.jpg")
         }
@@ -123,6 +123,10 @@ const styles = StyleSheet.create({
   },*/
   blurImage: {
     position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
   text: {
     color: PrimaryColor,
@@ -130,9 +134,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginHorizontal: 20,
     alignSelf: "center",
+    borderRadius: 50,
+    backgroundColor: LighterPrimaryColor,
+    paddingHorizontal: 20,
+    paddingVertical: 2,
   },
   lineDivider: {
-    height: 0.5,
+    height: 0.0,
     alignSelf: "center",
     width: 180,
     backgroundColor: "white",
@@ -164,5 +172,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginHorizontal: 18,
     borderRadius: 12,
+    backgroundColor: LighterPrimaryColor,
   },
 });

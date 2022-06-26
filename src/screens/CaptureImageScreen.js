@@ -54,7 +54,7 @@ const CaptureImageScreen = ({ navigation }) => {
       MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
         setPhoto(undefined);
         navigation.navigate({
-          name: "EmployeeProfile",
+          name: "BottomTabContainer",
           params: { photo: photo },
           merge: true,
         });
