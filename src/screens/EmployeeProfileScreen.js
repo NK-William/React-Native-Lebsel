@@ -6,24 +6,37 @@ import {
   Image,
   Text,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LighterPrimaryColor, PrimaryColor } from "../styles/Colors";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/core";
 
 // Add Glassmorphism and line dividers between texts.
 const EmployeeProfileScreen = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
   const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    if (route.params?.photo) {
+      console.log("Route with" + route.params?.photo);
+    }
+  }, [route.params?.photo]);
   return (
     <View style={styles.container}>
       <Image
         style={styles.blurImage}
         source={require("../../public/images/pp.jpg")}
-        blurRadius={70}
+        blurRadius={65}
       />
       {/* <View style={styles.cardView}> */}
       <Image
         style={styles.image}
-        source={require("../../public/images/pp.jpg")}
+        source={
+          route.params?.photo
+            ? { uri: "data:image/jpg;base64," + route.params?.photo.base64 }
+            : require("../../public/images/pp.jpg")
+        }
       />
       <View style={styles.floatingButtonContainer}>
         {isEdit ? (
@@ -42,7 +55,10 @@ const EmployeeProfileScreen = () => {
           </TouchableOpacity>
         )}
 
-        <TouchableOpacity style={styles.floatingButton}>
+        <TouchableOpacity
+          style={styles.floatingButton}
+          onPress={() => navigation.navigate("CaptureImage")}
+        >
           <FontAwesome name="camera" size={24} color={PrimaryColor} />
         </TouchableOpacity>
       </View>

@@ -9,6 +9,7 @@ import EmployeeTimesheetsScreen from "../src/screens/EmployeeTimesheetsScreen";
 import EmployeeSettingsScreen from "../src/screens/EmployeeSettingsScreen";
 import BottomTabContainer from "../src/components/BottomTabContainer";
 import CheckInsScreen from "../src/components/BottomTabContainer";
+import CaptureImageScreen from "../src/screens/CaptureImageScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,13 @@ const EmployeeFlowNavigation = () => {
         component={EmployeeCheckInsScreen}
         options={{
           title: "Check ins",
+        }}
+      />
+      <Stack.Screen
+        name="CaptureImage"
+        component={CaptureImageScreen}
+        options={{
+          title: "Image",
         }}
       />
       <Stack.Screen
