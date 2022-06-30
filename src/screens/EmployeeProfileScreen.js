@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import { LighterPrimaryColor, PrimaryColor } from "../styles/Colors";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/core";
+import * as ImagePicker from "expo-image-picker";
 
 // Add Glassmorphism and line dividers between texts.
 const EmployeeProfileScreen = ({ photo }) => {
@@ -17,15 +18,37 @@ const EmployeeProfileScreen = ({ photo }) => {
   const route = useRoute();
   const [isEdit, setIsEdit] = useState(false);
 
-  useEffect(() => {}, []);
+  const [image, setImage] = useState();
+
+  console.log(
+    "*************************************************************** image is: "
+  );
+  console.log(image);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log("Picked image: " + result);
+    if (!result.cancelled) {
+      setImage(result);
+    }
+  };
+
+  useEffect(() => {
+    setImage(photo);
+  }, [photo]);
+
   return (
     <View style={styles.container}>
       <Image
         style={styles.blurImage}
         source={
-          photo
-            ? { uri: "data:image/jpg;base64," + route.params?.photo.base64 }
-            : require("../../public/images/pp.jpg")
+          image ? { uri: image.uri } : require("../../public/images/pp.jpg")
         }
         blurRadius={65}
       />
@@ -33,9 +56,7 @@ const EmployeeProfileScreen = ({ photo }) => {
       <Image
         style={styles.image}
         source={
-          photo
-            ? { uri: "data:image/jpg;base64," + route.params?.photo.base64 }
-            : require("../../public/images/pp.jpg")
+          image ? { uri: image.uri } : require("../../public/images/pp.jpg")
         }
       />
       <View style={styles.floatingButtonContainer}>
@@ -57,7 +78,8 @@ const EmployeeProfileScreen = ({ photo }) => {
 
         <TouchableOpacity
           style={styles.floatingButton}
-          onPress={() => navigation.navigate("CaptureImage")}
+          //onPress={() => navigation.navigate("CaptureImage")}
+          onPress={() => pickImage()}
         >
           <FontAwesome name="camera" size={24} color={PrimaryColor} />
         </TouchableOpacity>
@@ -94,13 +116,9 @@ const EmployeeProfileScreen = ({ photo }) => {
           <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
             William Nkuna
           </Text>
-          <View style={styles.lineDivider} />
+          {/* <View style={styles.lineDivider} /> */}
           <Text style={styles.text}>William@gmail.com</Text>
-          <View style={styles.lineDivider} />
           <Text style={styles.text}>Centurion, Pretoria, Village Valencia</Text>
-          <View style={styles.lineDivider} />
-          <View style={styles.lineDivider} />
-          {/* Had to duplicate the code since the one above does not show the line divider */}
           <Text style={styles.text}>0712345678</Text>
         </View>
       )}
@@ -130,7 +148,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: PrimaryColor,
-    marginBottom: 4,
+    marginBottom: 8,
     fontSize: 16,
     marginHorizontal: 20,
     alignSelf: "center",

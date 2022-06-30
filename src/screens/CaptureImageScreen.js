@@ -6,10 +6,13 @@ import {
   SafeAreaView,
   Button,
   Image,
+  ActivityIndicator,
+  Pressable,
 } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import { AccentColor, PrimaryColor } from "../styles/Colors";
 
 const CaptureImageScreen = ({ navigation }) => {
   let cameraRef = useRef();
@@ -28,7 +31,21 @@ const CaptureImageScreen = ({ navigation }) => {
   }, []);
 
   if (hasCameraPermission === undefined) {
-    return <Text>Requesting permissions...</Text>;
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          size="large"
+          color={AccentColor}
+          animating={true}
+        />
+        <Text
+          style={{ color: { AccentColor }, alignSelf: "center", fontSize: 20 }}
+        >
+          Loading
+        </Text>
+      </View>
+    );
   } else if (!hasCameraPermission) {
     return (
       <Text>
@@ -50,7 +67,6 @@ const CaptureImageScreen = ({ navigation }) => {
 
   if (photo) {
     let savePhoto = () => {
-      console.log(photo.uri);
       MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
         setPhoto(undefined);
         navigation.navigate({
@@ -63,24 +79,31 @@ const CaptureImageScreen = ({ navigation }) => {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Image
-          style={styles.preview}
-          source={{ uri: "data:image/jpg;base64," + photo.base64 }}
-        />
+        <Image style={styles.preview} source={{ uri: photo.uri }} />
         {hasMediaLibraryPermission ? (
-          <Button title="Save" onPress={savePhoto} />
+          <Pressable
+            style={{ ...styles.buttonContainer, left: 8 }}
+            onPress={savePhoto}
+          >
+            <Text style={styles.buttonText}>Save</Text>
+          </Pressable>
         ) : undefined}
-        <Button title="Discard" onPress={() => setPhoto(undefined)} />
+        <Pressable
+          style={{ ...styles.buttonContainer, right: 8 }}
+          onPress={() => setPhoto(undefined)}
+        >
+          <Text style={styles.buttonText}>Discard</Text>
+        </Pressable>
       </SafeAreaView>
     );
   }
 
   return (
     <Camera style={styles.container} ref={cameraRef}>
-      <View style={styles.buttonContainer}>
-        <Button title="Take Pic" onPress={takePic} />
-      </View>
-      <StatusBar style="auto" />
+      <Pressable style={styles.buttonContainer} onPress={takePic}>
+        <Text style={styles.buttonText}>Capture</Text>
+      </Pressable>
+      {/* <StatusBar style="auto" /> */}
     </Camera>
   );
 };
@@ -88,17 +111,32 @@ const CaptureImageScreen = ({ navigation }) => {
 export default CaptureImageScreen;
 
 const styles = StyleSheet.create({
+  loaderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 8,
+  },
+  activityIndicator: { alignSelf: "center", marginBottom: 25 },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonContainer: {
-    backgroundColor: "#fff",
-    alignSelf: "flex-end",
+    position: "absolute",
+    backgroundColor: PrimaryColor,
+    bottom: 8,
+    alignSelf: "center",
+    borderRadius: 20,
+    padding: 12,
+    width: 80,
+    justifyContent: "center",
+    alignItems: "center",
   },
   preview: {
     alignSelf: "stretch",
     flex: 1,
   },
+  buttonText: { color: "white" },
 });
