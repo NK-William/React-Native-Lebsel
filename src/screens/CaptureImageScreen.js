@@ -14,7 +14,7 @@ import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { AccentColor, PrimaryColor } from "../styles/Colors";
 
-const CaptureImageScreen = ({ navigation }) => {
+const CaptureImageScreen = ({ addCapturedImage }) => {
   let cameraRef = useRef();
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
@@ -69,11 +69,12 @@ const CaptureImageScreen = ({ navigation }) => {
     let savePhoto = () => {
       MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
         setPhoto(undefined);
-        navigation.navigate({
+        /* navigation.navigate({
           name: "BottomTabContainer",
           params: { photo: photo },
           merge: true,
-        });
+        }); */
+        addCapturedImage(photo);
       });
     };
 
@@ -100,8 +101,17 @@ const CaptureImageScreen = ({ navigation }) => {
 
   return (
     <Camera style={styles.container} ref={cameraRef}>
-      <Pressable style={styles.buttonContainer} onPress={takePic}>
+      <Pressable
+        style={{ ...styles.buttonContainer, left: 8 }}
+        onPress={takePic}
+      >
         <Text style={styles.buttonText}>Capture</Text>
+      </Pressable>
+      <Pressable
+        style={{ ...styles.buttonContainer, right: 8 }}
+        onPress={() => addCapturedImage(null)}
+      >
+        <Text style={styles.buttonText}>Cancel</Text>
       </Pressable>
       {/* <StatusBar style="auto" /> */}
     </Camera>
@@ -122,11 +132,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    margin: 0,
   },
   buttonContainer: {
     position: "absolute",
     backgroundColor: PrimaryColor,
-    bottom: 8,
+    bottom: 24,
     alignSelf: "center",
     borderRadius: 20,
     padding: 12,

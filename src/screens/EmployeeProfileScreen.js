@@ -11,19 +11,22 @@ import { LighterPrimaryColor, PrimaryColor } from "../styles/Colors";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import * as ImagePicker from "expo-image-picker";
+import CaptureImageScreen from "./CaptureImageScreen";
+import ImagePickerOrTakePhotoPopUp from "../components/ImagePickerOrTakePhotoPopUp";
 
 // Add Glassmorphism and line dividers between texts.
-const EmployeeProfileScreen = ({ photo }) => {
+const EmployeeProfileScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [isEdit, setIsEdit] = useState(false);
-
   const [image, setImage] = useState();
 
-  console.log(
-    "*************************************************************** image is: "
-  );
-  console.log(image);
+  const [capturing, Setcapturing] = useState(false);
+  const [photoPopUpVisible, setPhotoPopUpVisible] = useState(false);
+
+  /*  useEffect(() => {
+    setImage(photo);
+  }, [photo]); */
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -39,93 +42,108 @@ const EmployeeProfileScreen = ({ photo }) => {
     }
   };
 
-  useEffect(() => {
-    setImage(photo);
-  }, [photo]);
+  const addCapturedImage = (captureImage) => {
+    if (!captureImage && !image) setImage(null);
+    else if (!captureImage && image) setImage(image);
+    else setImage(captureImage);
 
-  return (
-    <View style={styles.container}>
-      <Image
-        style={styles.blurImage}
-        source={
-          image ? { uri: image.uri } : require("../../public/images/pp.jpg")
-        }
-        blurRadius={65}
-      />
-      {/* <View style={styles.cardView}> */}
-      <Image
-        style={styles.image}
-        source={
-          image ? { uri: image.uri } : require("../../public/images/pp.jpg")
-        }
-      />
-      <View style={styles.floatingButtonContainer}>
+    Setcapturing(false);
+  };
+
+  if (capturing) {
+    return <CaptureImageScreen addCapturedImage={addCapturedImage} />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <Image
+          style={styles.blurImage}
+          source={
+            image ? { uri: image.uri } : require("../../public/images/pp.jpg")
+          }
+          blurRadius={65}
+        />
+        {/* <View style={styles.cardView}> */}
+        <Image
+          style={styles.image}
+          source={
+            image ? { uri: image.uri } : require("../../public/images/pp.jpg")
+          }
+        />
+        <View style={styles.floatingButtonContainer}>
+          {isEdit ? (
+            <TouchableOpacity
+              style={styles.floatingButton}
+              onPress={() => setIsEdit(false)}
+            >
+              <FontAwesome5 name="save" size={24} color={PrimaryColor} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.floatingButton}
+              onPress={() => setIsEdit(true)}
+            >
+              <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
+            </TouchableOpacity>
+          )}
+
+          <TouchableOpacity
+            style={styles.floatingButton}
+            //onPress={() => Setcapturing(true)}
+            //onPress={() => pickImage()}
+            onPress={() => setPhotoPopUpVisible(true)}
+          >
+            <FontAwesome name="camera" size={24} color={PrimaryColor} />
+          </TouchableOpacity>
+        </View>
         {isEdit ? (
-          <TouchableOpacity
-            style={styles.floatingButton}
-            onPress={() => setIsEdit(false)}
-          >
-            <FontAwesome5 name="save" size={24} color={PrimaryColor} />
-          </TouchableOpacity>
+          <View>
+            <TextInput
+              style={styles.textInput}
+              textAlign={"center"}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <TextInput
+              style={styles.textInput}
+              textAlign={"center"}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <TextInput
+              style={styles.textInput}
+              textAlign={"center"}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <TextInput
+              style={styles.textInput}
+              textAlign={"center"}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
         ) : (
-          <TouchableOpacity
-            style={styles.floatingButton}
-            onPress={() => setIsEdit(true)}
-          >
-            <FontAwesome5 name="pen" size={24} color={PrimaryColor} />
-          </TouchableOpacity>
+          <View>
+            <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
+              William Nkuna
+            </Text>
+            {/* <View style={styles.lineDivider} /> */}
+            <Text style={styles.text}>William@gmail.com</Text>
+            <Text style={styles.text}>
+              Centurion, Pretoria, Village Valencia
+            </Text>
+            <Text style={styles.text}>0712345678</Text>
+          </View>
         )}
 
-        <TouchableOpacity
-          style={styles.floatingButton}
-          //onPress={() => navigation.navigate("CaptureImage")}
-          onPress={() => pickImage()}
-        >
-          <FontAwesome name="camera" size={24} color={PrimaryColor} />
-        </TouchableOpacity>
+        {/* </View> */}
+        <ImagePickerOrTakePhotoPopUp
+          photoPopUpVisible={photoPopUpVisible}
+          hidePhotoPopUp={() => setPhotoPopUpVisible(false)}
+        />
       </View>
-      {isEdit ? (
-        <View>
-          <TextInput
-            style={styles.textInput}
-            textAlign={"center"}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <TextInput
-            style={styles.textInput}
-            textAlign={"center"}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <TextInput
-            style={styles.textInput}
-            textAlign={"center"}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <TextInput
-            style={styles.textInput}
-            textAlign={"center"}
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-        </View>
-      ) : (
-        <View>
-          <Text style={{ ...styles.text, fontSize: 20, fontWeight: "bold" }}>
-            William Nkuna
-          </Text>
-          {/* <View style={styles.lineDivider} /> */}
-          <Text style={styles.text}>William@gmail.com</Text>
-          <Text style={styles.text}>Centurion, Pretoria, Village Valencia</Text>
-          <Text style={styles.text}>0712345678</Text>
-        </View>
-      )}
-
-      {/* </View> */}
-    </View>
-  );
+    );
+  }
 };
 
 export default EmployeeProfileScreen;
