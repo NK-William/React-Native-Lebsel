@@ -10,7 +10,12 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { PrimaryColor } from "../styles/Colors";
 
-const ImagePickerOrTakePhotoPopUp = ({ photoPopUpVisible, hidePhotoPopUp }) => {
+const ImagePickerOrTakePhotoPopUp = ({
+  photoPopUpVisible,
+  hidePhotoPopUp,
+  captureImage,
+  pickImage,
+}) => {
   return (
     <View style={styles.container}>
       <Modal
@@ -28,6 +33,18 @@ const ImagePickerOrTakePhotoPopUp = ({ photoPopUpVisible, hidePhotoPopUp }) => {
               onPress={() => hidePhotoPopUp()}
             >
               <AntDesign name="closecircleo" size={24} color={PrimaryColor} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.photoLinkTextContainer}
+              onPress={() => captureImage()}
+            >
+              <Text style={styles.photoLinkText}>Take a photo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ ...styles.photoLinkTextContainer, marginVertical: 15 }}
+              onPress={() => pickImage()}
+            >
+              <Text style={styles.photoLinkText}>Pick a photo</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -57,7 +74,6 @@ const styles = StyleSheet.create({
   popUpView: {
     margin: 20,
     backgroundColor: "white",
-    height: 200,
     width: 200,
     borderRadius: 20,
     padding: 8,
@@ -90,5 +106,16 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  photoLinkText: {
+    color: "white",
+  },
+  photoLinkTextContainer: {
+    backgroundColor: PrimaryColor,
+    padding: 10,
+    width: 120,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -29,6 +29,7 @@ const EmployeeProfileScreen = () => {
   }, [photo]); */
 
   const pickImage = async () => {
+    setPhotoPopUpVisible(false);
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -48,6 +49,11 @@ const EmployeeProfileScreen = () => {
     else setImage(captureImage);
 
     Setcapturing(false);
+  };
+
+  const captureImage = () => {
+    setPhotoPopUpVisible(false);
+    Setcapturing(true);
   };
 
   if (capturing) {
@@ -88,8 +94,6 @@ const EmployeeProfileScreen = () => {
 
           <TouchableOpacity
             style={styles.floatingButton}
-            //onPress={() => Setcapturing(true)}
-            //onPress={() => pickImage()}
             onPress={() => setPhotoPopUpVisible(true)}
           >
             <FontAwesome name="camera" size={24} color={PrimaryColor} />
@@ -140,6 +144,8 @@ const EmployeeProfileScreen = () => {
         <ImagePickerOrTakePhotoPopUp
           photoPopUpVisible={photoPopUpVisible}
           hidePhotoPopUp={() => setPhotoPopUpVisible(false)}
+          captureImage={captureImage}
+          pickImage={pickImage}
         />
       </View>
     );
