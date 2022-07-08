@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { PrimaryColor } from "../styles/Colors";
 import { LinearGradient } from "expo-linear-gradient";
+import { RadioButton } from "react-native-paper";
 
 const EmployeeAvailabilityScreen = () => {
   return (
@@ -16,6 +17,18 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Monday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+              <RadioButton
+                style={styles.radioButton}
+                value="weekly"
+                label="TestW"
+                status={true ? "checked" : "unchecked"}
+                onPress={() => {
+                  null;
+                }}
+              />
+            </View>
           </LinearGradient>
           <LinearGradient
             style={{ ...styles.dayBubble, marginLeft: 8 }}
@@ -24,6 +37,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Tuesday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
         </View>
         <View style={styles.gridRowView}>
@@ -34,6 +50,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Wednesday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
           <LinearGradient
             style={{ ...styles.dayBubble, marginLeft: 8 }}
@@ -42,6 +61,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Thursday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
         </View>
         <View style={styles.gridRowView}>
@@ -52,6 +74,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Friday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
           <LinearGradient
             style={{ ...styles.dayBubble, marginLeft: 8 }}
@@ -60,6 +85,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Saturday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
         </View>
         <View style={styles.gridRowView}>
@@ -70,6 +98,9 @@ const EmployeeAvailabilityScreen = () => {
             end={{ x: 1, y: 1 }}
           >
             <Text style={styles.dayText}>Sunday</Text>
+            <View style={styles.weeklySelectView}>
+              <Text style={styles.weeklyText}>Weekly</Text>
+            </View>
           </LinearGradient>
         </View>
       </View>
@@ -93,6 +124,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 8,
   },
+  weeklySelectView: {
+    flexDirection: "row",
+    position: "absolute",
+    bottom: 0,
+    marginBottom: 4,
+  },
+  weeklyText: {
+    color: "white",
+    fontSize: 10,
+  },
+  radioButton: {},
   gridView: {
     marginHorizontal: 8,
     justifyContent: "center",
