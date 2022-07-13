@@ -1,10 +1,42 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { PrimaryColor } from "../styles/Colors";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { LinearGradient } from "expo-linear-gradient";
-import { RadioButton } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
 
 const EmployeeAvailabilityScreen = () => {
+  const [radioButtons, setRadioButtons] = useState({
+    mondayWeekly: false,
+    tuesdayWeekly: false,
+    wednesdayWeekly: false,
+    thursdayWeekly: false,
+    fridayWeekly: false,
+    saturdayWeekly: false,
+    sundayWeekly: false,
+  });
+
+  const mondayRadioBtnName = radioButtons.mondayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const tuesdayRadioBtnName = radioButtons.tuesdayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const wednesdayRadioBtnName = radioButtons.wednesdayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const thursdayRadioBtnName = radioButtons.thursdayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const fridayRadioBtnName = radioButtons.fridayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const saturdayRadioBtnName = radioButtons.saturdayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+  const sundayRadioBtnName = radioButtons.sundayWeekly
+    ? "radio-button-on"
+    : "radio-button-off";
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>Choose your availability</Text>
@@ -19,15 +51,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Monday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
-              <RadioButton
-                style={styles.radioButton}
-                value="weekly"
-                label="TestW"
-                status={true ? "checked" : "unchecked"}
-                onPress={() => {
-                  null;
-                }}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    mondayWeekly: !radioButtons.mondayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={mondayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
           <LinearGradient
@@ -39,6 +76,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Tuesday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    tuesdayWeekly: !radioButtons.tuesdayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={tuesdayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -52,6 +103,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Wednesday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    wednesdayWeekly: !radioButtons.wednesdayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={wednesdayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
           <LinearGradient
@@ -63,6 +128,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Thursday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    thursdayWeekly: !radioButtons.thursdayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={thursdayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -76,6 +155,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Friday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    fridayWeekly: !radioButtons.fridayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={fridayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
           <LinearGradient
@@ -87,6 +180,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Saturday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    saturdayWeekly: !radioButtons.saturdayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={saturdayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -100,6 +207,20 @@ const EmployeeAvailabilityScreen = () => {
             <Text style={styles.dayText}>Sunday</Text>
             <View style={styles.weeklySelectView}>
               <Text style={styles.weeklyText}>Weekly</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  setRadioButtons({
+                    ...radioButtons,
+                    sundayWeekly: !radioButtons.sundayWeekly,
+                  })
+                }
+              >
+                <Ionicons
+                  name={sundayRadioBtnName}
+                  size={16}
+                  color={AccentColor}
+                />
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -128,11 +249,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     bottom: 0,
+    alignItems: "center",
     marginBottom: 4,
   },
   weeklyText: {
     color: "white",
     fontSize: 10,
+    marginRight: 2,
   },
   radioButton: {},
   gridView: {
