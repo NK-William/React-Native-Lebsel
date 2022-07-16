@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { PrimaryColor, AccentColor } from "../styles/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import DayBubble from "../components/DayBubble";
 
 const EmployeeAvailabilityScreen = () => {
   const [radioButtons, setRadioButtons] = useState({
@@ -42,31 +43,18 @@ const EmployeeAvailabilityScreen = () => {
       <Text style={styles.titleText}>Choose your availability</Text>
       <View style={styles.gridView}>
         <View style={styles.gridRowView}>
-          <LinearGradient
-            style={{ ...styles.dayBubble, marginRight: 8 }}
-            colors={[PrimaryColor, "yellow"]}
-            start={{ x: 0.4, y: 0.4 }}
-            end={{ x: 1, y: 1 }}
-          >
-            <Text style={styles.dayText}>Monday</Text>
-            <View style={styles.weeklySelectView}>
-              <Text style={styles.weeklyText}>Weekly</Text>
-              <TouchableOpacity
-                onPress={() =>
-                  setRadioButtons({
-                    ...radioButtons,
-                    mondayWeekly: !radioButtons.mondayWeekly,
-                  })
-                }
-              >
-                <Ionicons
-                  name={mondayRadioBtnName}
-                  size={16}
-                  color={AccentColor}
-                />
-              </TouchableOpacity>
-            </View>
-          </LinearGradient>
+          <DayBubble
+            bubbleRightColor="yellow"
+            day="Moondayy"
+            dayRadioBtnName={mondayRadioBtnName}
+            setRadioButtons={() =>
+              setRadioButtons({
+                ...radioButtons,
+                mondayWeekly: !radioButtons.mondayWeekly,
+              })
+            }
+          />
+
           <LinearGradient
             style={{ ...styles.dayBubble, marginLeft: 8 }}
             colors={[PrimaryColor, "pink"]}
