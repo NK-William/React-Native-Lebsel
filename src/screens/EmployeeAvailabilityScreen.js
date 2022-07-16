@@ -52,6 +52,7 @@ const EmployeeAvailabilityScreen = () => {
               })
             }
           />
+          <View style={styles.space} />
           <DayBubble
             bubbleRightColor="pink"
             day="Tuesday"
@@ -76,6 +77,7 @@ const EmployeeAvailabilityScreen = () => {
               })
             }
           />
+          <View style={styles.space} />
           <DayBubble
             bubbleRightColor="orange"
             day="Thursday"
@@ -100,6 +102,7 @@ const EmployeeAvailabilityScreen = () => {
               })
             }
           />
+          <View style={styles.space} />
           <DayBubble
             bubbleRightColor="purple"
             day="Saturday"
@@ -140,6 +143,7 @@ const styles = StyleSheet.create({
     margin: 8,
     fontSize: 16,
   },
+  space: { marginHorizontal: 8 },
   container: { flex: 1 },
   gridRowView: {
     flexDirection: "row",
@@ -148,6 +152,7 @@ const styles = StyleSheet.create({
   radioButton: {},
   gridView: {
     marginHorizontal: 8,
+    marginBottom: 18,
     justifyContent: "center",
     alignItems: "center",
     flex: 1,

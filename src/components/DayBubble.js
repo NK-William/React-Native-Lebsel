@@ -12,7 +12,7 @@ const DayBubble = ({
 }) => {
   return (
     <LinearGradient
-      style={{ ...styles.dayBubble, marginRight: 8 }}
+      style={styles.dayBubble}
       colors={[PrimaryColor, bubbleRightColor]}
       start={{ x: 0.4, y: 0.4 }}
       end={{ x: 1, y: 1 }}
