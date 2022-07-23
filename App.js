@@ -9,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./src/firebase-config";
 import MainFlowNavigation from "./navigation/MainFlowNavigation";
 import AuthenticationFlowNavigation from "./navigation/AuthenticationFlowNavigation";
+import { Provider as PromoterProvider } from "./src/context/PromoterContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,9 @@ export default function App() {
   return (
     <NavigationContainer>
       {user ? (
-        <MainFlowNavigation user={user} />
+        <PromoterProvider>
+          <MainFlowNavigation user={user} />
+        </PromoterProvider>
       ) : (
         <AuthenticationFlowNavigation />
       )}
